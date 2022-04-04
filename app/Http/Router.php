@@ -141,9 +141,9 @@ class Router {
 
         unset($matches[0]);
 
-        $keys = $methods[$httpMethod]['variables'];
-        $methods[$httpMethod]['variables'] = array_combine($keys, $matches);
-        $methods[$httpMethod]['variables']['request'] = $this->request;
+//         $keys = $methods[$httpMethod]['variables'];
+//         $methods[$httpMethod]['variables'] = array_combine($keys,$matches);
+//         $methods[$httpMethod]['variables']['request'] = $this->request;
 
         return $methods[$httpMethod];
       }
