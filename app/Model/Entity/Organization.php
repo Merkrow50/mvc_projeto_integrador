@@ -28,7 +28,7 @@ class Organization {
   * descriçãso sobre a organização
   * @var string
   */
-  public $description = 'Carbon Footprint é uma empresa com á visão de gerencia, sobre a queima de carbono gerada pela frota de sua empresa, para o caminhar de uma concientização sobre a natureza e o futuro.';
+  public $description = 'Carbon Footprint é um projeto desenvolvido pelos alunos Marcelo Klosouski Junior, Alexandre Ramos Barbosa e Alan Campos Silva na instituição SENAI, curso de graduação de análise e desenvolvimento de sistemas, no terceiro período, com o objetivo de construir um sistema capaz de gerenciar e relatar dados sobre a pegada de carbono gerada pela frota de carros das empresas, para um controle maior sobre a emissão de CO2 na atmosfera, e um amadurecimento da empresa assim caminhando para uma concientização sobre a natureza e o futuro.';
 
 
 }

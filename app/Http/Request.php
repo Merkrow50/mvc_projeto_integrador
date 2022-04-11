@@ -38,9 +38,9 @@ class Request {
   * Construtor da classe
   */
   public function __construct(){
-    $this->queryParams = $__GET ?? [];
-    $this->postVars = $__POST ?? [];
-    $this->headers = getallHeaders();
+    $this->queryParams = $_GET ?? [];
+    $this->postVars = $_POST ?? [];
+    $this->headers = getallheaders();
     $this->httpMethod = $_SERVER['REQUEST_METHOD'] ?? '';
     $this->uri = $_SERVER['REQUEST_URI'] ?? '';
   }

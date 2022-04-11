@@ -1,24 +1,24 @@
-<h1 class="title-new-entity">Novo colaborador</h1>
-<form>
+<form method="post">
+  <h1 class="title-new-entity">Novo colaborador</h1>
   <div class="form-group">
     <label for="inputName">Nome</label>
-    <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp">
+    <input type="text" class="form-control" id="inputName" name="nome" aria-describedby="nameHelp">
   </div>
   <div class="form-group">
     <label for="inputCnh">CNH</label>
-    <input type="text" class="form-control" id="inputCnh" >
+    <input type="text" class="form-control" id="inputCnh" name="cnh">
   </div>
   <div class="form-group">
     <label for="inputMatricula">Matricula</label>
-    <input type="text" class="form-control" id="inputMatricula" aria-describedby="matriculaHelp">
+    <input type="text" class="form-control" id="inputMatricula" name="matricula" aria-describedby="matriculaHelp">
   </div>
   <div class="form-group">
     <label for="inputDataNascimento">Data de Nascimento</label>
-    <input type="date" class="form-control" id="inputDataNascimento" aria-describedby="dataNascimentoHelp">
+    <input type="date" class="form-control" id="inputDataNascimento" name="data_nascimento" aria-describedby="dataNascimentoHelp">
   </div>
   <div class="form-group">
     <label for="inputAtribuicao">Atribuição</label>
-    <input type="text" class="form-control" id="inputAtribuicao" aria-describedby="atribuicaoHelp">
+    <input type="text" class="form-control" id="inputAtribuicao" name="atribuicao" aria-describedby="atribuicaoHelp">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

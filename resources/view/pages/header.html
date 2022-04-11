@@ -1,21 +1,36 @@
-<header tabindex="0">
-  <img src="{{URL}}/resources/view/images/carbon_footprint.png" alt="logo"/>
-</header>
-<div id="nav-container">
-  <div class="bg"></div>
-  <div class="button" tabindex="0">
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-  </div>
-  <div id="nav-content" tabindex="0">
-    <ul>
-      <li><a href="{{URL}}">Home</a></li>
-      <li><a href="{{URL}}/cadastros/list/veiculos">Veiculos</a></li>
-      <li><a href="{{URL}}/collaborators">Colaboradores</a></li>
-      <li><a href="{{URL}}/cadastros/list/chamados">About</a></li>
-      <li><a href="{{URL}}/contact">Contact</a></li>
-      <li class="small"><a href="#0">Facebook</a><a href="#0">Instagram</a></li>
+<nav role="navigation">
+  <div id="menuToggle">
+
+    <input type="checkbox" />
+    <img src="http://localhost/mvc_projeto_integrador/resources/view/images/logo-co2.png" width="60%" alt="logo" style="position: fixed;top: 0.1%;left: 42%;width: 200px;">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+    <ul id="menu">
+      <section>
+        <div class="menu-perfil">
+          <div class="logo">
+            <img src="{{URL}}/resources/view/images/logo-co2-branco.png" width="60%" alt="logo"/>
+          </div>
+          <hr/>
+          <div class="user-perfil">
+            <div>
+              <a href="{{URL}}/perfil"><i class="fas fa-user"></i></a>
+            </div>
+            <p class="name-perfil">Marcelo Klosouski Junior</p>
+          </div>
+        </div>
+      </section>
+      <hr/>
+      <a href="{{URL}}"><li><i class="fas fa-home" style="width: 40px;"></i>Home</li></a>
+      <a href="{{URL}}/list/collaborators"><li><i class="fas fa-car" style="width: 40px;"></i>Veículos</li></a>
+      <a href="{{URL}}/list/collaborators"><li><i class="fas fa-phone-volume" style="width: 40px;"></i>Chamados</li></a>
+      <a href="{{URL}}/list/collaborators"><li><i class="fas fa-users" style="width: 40px;"></i>Colaboradores</li></a>
+      <a href="{{URL}}/list/collaborators"><li><i class="fas fa-file" style="width: 40px;"></i>Relatório</li></a>
+      <a href="#"><li><i class="fas fa-info" style="width: 40px;"></i>Sobre</li></a>
+      <a href="{{URL}}/contato"><li><i class="fas fa-envelope" style="width: 40px;"></i>Contato</li></a>
     </ul>
   </div>
-</div>
+</nav>

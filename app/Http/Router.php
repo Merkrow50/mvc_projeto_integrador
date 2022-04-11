@@ -52,20 +52,23 @@ class Router {
   }
 
   private function addRoute($method, $route, $params = []){
-    foreach($params as $key=>$value){
-      $params['controller'] = $value;
-      unset($params[$key]);
-      continue;
+    foreach($params as $key => $value){
+        if ($value instanceof Closure) {
+            $params['controller'] = $value;
+            unset($params[$key]);
+            continue;
+        }
     }
 
     //VARIAVEIS DA ROTA
-    $param['variables'] = [];
+    $params['variables'] = [];
 
     //PADRA DE VALIDACAO DAS VARIAVEIS DAS ROTAS
     $patternVariable = '/{(.*?)}/';
+
     if(preg_match_all($patternVariable, $route, $matches)){
       $route = preg_replace($patternVariable, '(.*?)', $route);
-      $param['variables'] = $matches[1];
+      $params['variables'] = $matches[1];
     }
 
     $patternRoute = '/^'.str_replace('/','\/',$route).'$/';
@@ -132,7 +135,6 @@ class Router {
     $uri = $this->getUri();
 
     $httpMethod = $this->request->getHttpMethod();
-
     foreach($this->routes as $patternRoute=>$methods){
 
      if(preg_match($patternRoute, $uri, $matches)){
@@ -141,9 +143,9 @@ class Router {
 
         unset($matches[0]);
 
-//         $keys = $methods[$httpMethod]['variables'];
-//         $methods[$httpMethod]['variables'] = array_combine($keys,$matches);
-//         $methods[$httpMethod]['variables']['request'] = $this->request;
+        $keys = $methods[$httpMethod]['variables'];
+        $methods[$httpMethod]['variables'] = array_combine($keys,$matches);
+        $methods[$httpMethod]['variables']['request'] = $this->request;
 
         return $methods[$httpMethod];
       }
