@@ -5,6 +5,7 @@ require __DIR__.'/../vendor/autoload.php';
 use \App\Utils\View;
 use \App\Common\Environment;
 use \App\DatabaseManager\Database;
+use \App\Http\Middleware\Queue as MiddlewareQueue;
 
 Environment::load(__DIR__.'/../');
 
@@ -21,4 +22,16 @@ define('URL', getEnv('URL'));
 //DEFINE O VALOR PADRÃO DAS VARIAVEIS
 View::init([
   'URL' => URL
+]);
+
+//DEFINE O MAPEAMENTO DE MIDDLEWARES
+MiddlewareQueue::setMap([
+    'maintenance' => \App\Http\Middleware\Maintenance::class,
+    'require-admin-logout' => \App\Http\Middleware\RequireAdminLogout::class,
+    'require-admin-login' => \App\Http\Middleware\RequireAdminLogin::class
+]);
+
+// DEFINE O MAPEAMENTO DE MIDDLEWARES PADRÕES(EXECUTADO EM TODAS AS ROTAS)
+MiddlewareQueue::setDefault([
+    'maintenance'
 ]);

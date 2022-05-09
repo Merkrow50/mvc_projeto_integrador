@@ -6,27 +6,21 @@ use App\DatabaseManager\Database;
 
 class Collaborators {
 
-  public $id;
+  public $colaborador_id;
 
   public $nome;
 
-  public $cnh;
-
   public $matricula;
 
-  public $data_nascimento;
-
-  public $atribuicao;
+  public $habilitado;
 
 
   public function cadastrar(){
 
-      $this->id = (new Database('colaborador'))->insert([
+      $this->colaborador_id = (new Database('colaborador'))->insert([
           'nome' => $this->nome,
-          'cnh' => $this->cnh,
           'matricula' => $this->matricula,
-          'data_nascimento' => $this->data_nascimento,
-          'atribuicao' => $this->atribuicao
+          'habilitado' => $this->habilitado
       ]);
 
       return true;

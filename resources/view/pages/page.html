@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="{{URL}}/resources/view/styles/home.css">
   <link rel="stylesheet" href="{{URL}}/resources/view/styles/header.css">
   <link rel="stylesheet" href="{{URL}}/resources/view/styles/footer.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <style>
 
       body{
@@ -110,7 +111,7 @@
       }
 
       .btn-primary:hover{
-          background-color: #276955;
+          background-color: #41A58D;
       }
 
       .title-new-entity{
@@ -123,7 +124,7 @@
 
       form{
         padding: 5rem;
-        border: 1px solid black;
+        border: 1px solid #333333;
         width: 75rem;
         border-radius: 5px;
         margin: 10rem auto;
@@ -134,18 +135,33 @@
         text-align: left;
         display: flex;
         justify-content: center;
+        table-layout: fixed;
+        width: 100%;
       }
 
       th{
         padding: 1rem;
-        background-color: #26272b;
+        background-color: #333333;
         color: white;
         font-family: 'Encode Sans Condensed', sans-serif;
         font-weight: 600;
         letter-spacing: .03em;
+        text-align: center;
+      }
+
+      .header-buttons {
+        padding: 1rem;
+        background-color: #333333;
+        color: white;
+        font-family: 'Encode Sans Condensed', sans-serif;
+        font-weight: 600;
+        letter-spacing: .03em;
+        text-align: right;
       }
 
       td{
+
+        text-align: center;
         padding: 1rem;
         background-color: #DCDCDC;
         font-family: 'Encode Sans Condensed', sans-serif;
@@ -155,11 +171,13 @@
 
       #section-table{
         padding: 10rem 10rem 10rem;
-        border: 1px solid rgba(0,0,0,.125);
         border-radius: .25rem;
         background-color: #fff;
         flex-direction: column;
         word-wrap: break-word;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       #link-newEntity{
@@ -169,7 +187,110 @@
         color: white;
       }
 
-</style>
+      table {
+        table-layout: fixed ;
+        width: 600px ;
+        min-width: 600px;
+      }
+      td {
+        width: 25% ;
+      }
+
+      tbody {
+        width: 100% ;
+        display: table;
+      }
+
+      .btn-edit {
+        transition: all 0.3s ease;
+      }
+      .btn-edit:hover {
+        background-color: #4194a3;
+      }
+
+      .btn-delete {
+        transition: all 0.3s ease;
+      }
+      .btn-delete:hover {
+        background-color: #a34144;
+      }
+
+      .btn-novo {
+        transition: all 0.3s ease;
+      }
+      .btn-novo:hover {
+        background-color:  #41A58D;
+      }
+
+
+      .custom-btn {
+        width: 95px;
+        height: 40px;
+        padding: 10px 25px;
+        font-family: 'Encode Sans Condensed', sans-serif;
+        border: 1px solid white;
+        color: white;
+        background-color: #333333;
+        font-weight: 600;
+        letter-spacing: .03em;
+        margin: 2px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+      }
+
+    .button-form {
+      display: flex;
+      margin-top: 5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+
+  .nav {
+   display: flex;
+    justify-content: center;
+    align-items: center;
+   min-width: 600px;
+   height: 40px;
+   background-color: #DCDCDC;
+  }
+
+  .pagination {
+    display: flex;
+    margin: 3rem;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .page-item{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin: 2px;
+  }
+
+  .page-link {
+    background-color: #333333;
+    color: white;
+    padding: 5px;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .page-link:hover{
+    background-color: #41A58D;
+  }
+
+  .active{
+    background: #41A58D;
+  }
+
+  </style>
 </head>
 <body>
 <div class="container">
@@ -179,5 +300,15 @@
 
   {{footer}}
 </div>
+<script>
+  let btnNovo = document.getElementById('btn-novo');
+  if (btnNovo) {
+    btnNovo.onclick = () => {
+      document.location.href = `${document.location.pathname}/form`;
+      console.log('clicou');
+    };
+  }
+
+</script>
 </body>
 </html>

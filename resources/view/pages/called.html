@@ -1,0 +1,27 @@
+<form method="post">
+  <h1 class="title-new-entity">Novo chamado</h1>
+  <div class="form-group">
+    <label for="input-veiculo">Veículo</label>
+    <select class="form-control"  id="input-veiculo" name="veiculo_id">
+      {{options-vehicles}}
+    </select>
+  </div>
+  <div class="form-group">
+  <label for="input-colaborador">Colaborador</label>
+  <select class="form-control"  id="input-colaborador" name="colaborador_id">
+    {{options-collaborators}}
+  </select>
+  </div>
+  <div class="form-group">
+  <label for="input-data">Data</label>
+  <input type="date" class="form-control" id="input-data" name="data">
+  </div>
+  <div class="form-group">
+    <label for="input-distancia">Distância Percorrida</label>
+    <input type="number" class="form-control" id="input-distancia" name="distancia_percorrida">
+  </div>
+  <div class="button-form">
+    <button type="button" class="btn btn-primary" id="btn-cancelar" onclick="history.back()">Cancelar</button>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </div>
+</form>

@@ -3,7 +3,7 @@
 
     <input type="checkbox" />
     <img src="http://localhost/mvc_projeto_integrador/resources/view/images/logo-co2.png" width="60%" alt="logo" style="position: fixed;top: 0.1%;left: 42%;width: 200px;">
-
+    <a style="position: fixed; top: 2.5%; left: 96.5%; width: 200px;" href="{{URL}}/admin/logout"><i class="fas fa-sign-out-alt" style="font-size: xx-large; color: #4B4D59;"></i></a>
     <span></span>
     <span></span>
     <span></span>
@@ -16,19 +16,17 @@
           </div>
           <hr/>
           <div class="user-perfil">
-            <div>
-              <a href="{{URL}}/perfil"><i class="fas fa-user"></i></a>
-            </div>
-            <p class="name-perfil">Marcelo Klosouski Junior</p>
+              <a style="margin-right: 1.5em" href="{{URL}}/perfil"><i class="fas fa-user"></i></a>
+              <p class="name-perfil">{{usuario}}</p>
           </div>
         </div>
       </section>
       <hr/>
       <a href="{{URL}}"><li><i class="fas fa-home" style="width: 40px;"></i>Home</li></a>
-      <a href="{{URL}}/list/collaborators"><li><i class="fas fa-car" style="width: 40px;"></i>Veículos</li></a>
-      <a href="{{URL}}/list/collaborators"><li><i class="fas fa-phone-volume" style="width: 40px;"></i>Chamados</li></a>
+      <a href="{{URL}}/list/vehicles"><li><i class="fas fa-car" style="width: 40px;"></i>Veículos</li></a>
+      <a href="{{URL}}/list/calleds"><li><i class="fas fa-phone-volume" style="width: 40px;"></i>Chamados</li></a>
       <a href="{{URL}}/list/collaborators"><li><i class="fas fa-users" style="width: 40px;"></i>Colaboradores</li></a>
-      <a href="{{URL}}/list/collaborators"><li><i class="fas fa-file" style="width: 40px;"></i>Relatório</li></a>
+      <a href="{{URL}}/list/reports"><li><i class="fas fa-file" style="width: 40px;"></i>Relatório</li></a>
       <a href="#"><li><i class="fas fa-info" style="width: 40px;"></i>Sobre</li></a>
       <a href="{{URL}}/contato"><li><i class="fas fa-envelope" style="width: 40px;"></i>Contato</li></a>
     </ul>
