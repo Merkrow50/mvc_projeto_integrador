@@ -3,31 +3,29 @@
 namespace App\Controller\Pages;
 
 use \App\Utils\View;
-use \App\Model\Entity\Collaborators as EntityCollaborators;
+use \App\Model\Entity\Vehicles as EntityVehicles;
 
-class Collaborators extends Page {
+class Vehicles extends Page {
 
-  public static function getCollaborators(){
+  public static function getVehicles(){
 
-    $content = View::render('pages/collaborators',[
-//        'itens' => self::getCollaboratorsItens()
-    ]);
+    $content = View::render('pages/vehicles',[]);
 
-    return parent::getPage('Novo colaborador', $content);
+    return parent::getPage('Novo veiculo', $content);
   }
 
-  public static function insertCollaborators($request){
+  public static function insertVehicle($request){
       $postVars = $request->getPostVars();
 
-      $obCollaborators = new EntityCollaborators;
+      $obCollaborators = new EntityVehicles;
 
-      $obCollaborators->nome = $postVars['nome'];
-      $obCollaborators->matricula = $postVars['matricula'];
-      $obCollaborators->habilitado = $postVars['habilitado'];
+      $obCollaborators->ano = $postVars['ano'];
+      $obCollaborators->modelo = $postVars['modelo'];
+      $obCollaborators->autonomia = $postVars['autonomia'];
       $obCollaborators->cadastrar();
 
 
-    return self::getCollaborators();
+    return self::getVehicles();
   }
 //
 //    public static function getCollaboratorsItens()

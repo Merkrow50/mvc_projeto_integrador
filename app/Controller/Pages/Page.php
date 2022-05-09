@@ -8,7 +8,9 @@
 
 
     private static function getHeader(){
-      return View::render('pages/header');
+      return View::render('pages/header',[
+          'usuario' => $_SESSION['admin']['usuario']['nome']
+      ]);
     }
 
     private static function getFooter(){
@@ -28,7 +30,39 @@
         'title' => $title,
         'header' => self::getHeader(),
         'footer' => self::getFooter(),
-        'content' => $content
+        'content' => $content,
       ]);
+    }
+
+    public static function getPagination($request, $obPagination){
+
+        //PAGINAS
+        $pages = $obPagination->getPages();
+        // VERIFICA QUANTIDADE DE PAGINAS
+        if(count($pages) <= 1 ) return '';
+
+        // LINKS
+        $links = '';
+
+        // URL ATUAL (SEM GETS)
+        $url = $request->getRouter()->getCurrentUrl();
+
+        //GET
+        $queryParams = $request->getQueryParams();
+
+        foreach($pages as $page){
+            $queryParams['page'] = $page['page'];
+
+            $link = $url.'?'.http_build_query($queryParams);
+
+            $links .= View::render('pages/pagination/link', [
+                'page' => $page['page'],
+                'link' => $link,
+                'active' => $page['current'] ? 'active' : '',
+            ]);
+        }
+        return View::render('pages/pagination/box', [
+            'links' => $links
+        ]);
     }
   }

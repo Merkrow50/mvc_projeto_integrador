@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Queue;
 use \Closure;
 use \Exception;
 use \ReflectionFunction;
@@ -37,7 +38,7 @@ class Router {
   * @var Request
   */
   public function __construct($url){
-    $this->request = new Request();
+    $this->request = new Request($this);
     $this->url = $url;
     $this->setPrefix();
   }
@@ -59,6 +60,9 @@ class Router {
             continue;
         }
     }
+
+      //Middlewares da rota
+      $params['middlewares'] = $params['middlewares'] ?? [];
 
     //VARIAVEIS DA ROTA
     $params['variables'] = [];
@@ -175,12 +179,26 @@ class Router {
         $args[$name] = $route['variables'][$name] ?? '';
       }
 
-      return call_user_func_array($route['controller'], $args);
-
+      return (new Queue($route['middlewares'], $route['controller'], $args))->next($this->request);
     }catch(Exception $e){
       return new Response($e->getCode(), $e->getMessage());
     }
   }
 
+  public function getCurrentUrl(){
+      return $this->url.$this->getUri();
+  }
+
+    /**
+     * metodo responsavel por redirecionar a url
+     * @param $route
+     * @return void
+     */
+  public function redirect($route){
+      $url = $this->url.$route;
+
+      header("Location: ".$url);
+      exit;
+  }
 
 }

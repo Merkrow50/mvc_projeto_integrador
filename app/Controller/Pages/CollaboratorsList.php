@@ -4,6 +4,7 @@ namespace App\Controller\Pages;
 
 use App\Utils\View;
 use \App\Model\Entity\Collaborators as EntityCollaborators;
+use \App\DatabaseManager\Pagination;
 
 class CollaboratorsList extends Page
 {
@@ -11,32 +12,42 @@ class CollaboratorsList extends Page
     /*
     *@return string
     */
-    public static function getCollaboratorsList(){
+    public static function getCollaboratorsList($request): string
+    {
 
         // View da home
         $content = View::render('pages/collaboratorslist',[
-            'itens' => self::getCollaboratorsItens()
+            'itens' => self::getCollaboratorsItens($request, $obPagination),
+            'pagination' => parent::getPagination($request, $obPagination)
         ]);
 
         // View da pagina
         return parent::getPage('Lista de Colaboradores', $content);
     }
 
-    public static function getCollaboratorsItens()
+    public static function getCollaboratorsItens($request, &$obPagination): string
 
     {
         $itens = '';
 
-        $results = EntityCollaborators::getCollaborators(null, 'id DESC');
+
+        //QUANTIDADE TOTAL DE REGISTROS
+        $quantidadeTotal = EntityCollaborators::getCollaborators(null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+
+        $queryParams = $request->getQueryParams();
+
+        $paginaAtual = $queryParams['page'] ?? 1;
+
+        $obPagination = new Pagination($quantidadeTotal, $paginaAtual,3);
+
+        $results = EntityCollaborators::getCollaborators(null, 'colaborador_id DESC', $obPagination->getLimit());
 
         while ($obCollaborators = $results->fetchObject(Collaborators::class)){
 
-            $itens .= View::render('pages/itens',[
+            $itens .= View::render('pages/itensCollaborators',[
                 'nome' => $obCollaborators->nome,
-                'cnh' => $obCollaborators->cnh,
                 'matricula' => $obCollaborators->matricula,
-                'data_nascimento' => date('d/m/Y', strtotime($obCollaborators->data_nascimento)),
-                'atribuicao' => $obCollaborators->atribuicao
+                'habilitado' => $obCollaborators->habilitado
             ]);
 
         }
