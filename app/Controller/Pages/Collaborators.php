@@ -9,9 +9,7 @@ class Collaborators extends Page {
 
   public static function getCollaborators(){
 
-    $content = View::render('pages/collaborators',[
-//        'itens' => self::getCollaboratorsItens()
-    ]);
+    $content = View::render('pages/collaborators',[]);
 
     return parent::getPage('Novo colaborador', $content);
   }
@@ -27,29 +25,7 @@ class Collaborators extends Page {
       $obCollaborators->cadastrar();
 
 
-    return self::getCollaborators();
+      $request->getRouter()->redirect('/list/collaborators');
   }
-//
-//    public static function getCollaboratorsItens()
-//
-//    {
-//        $itens = '';
-//
-//        $results = EntityCollaborators::getCollaborators(null, 'id DESC');
-//
-//        while ($obCollaborators = $results->fetchObject(Collaborators::class)){
-//
-//            $itens = View::render('pages/itens',[
-//               'nome' => $obCollaborators->nome,
-//               'cnh' => $obCollaborators->cnh,
-//               'matricula' => $obCollaborators->matricula,
-//               'data_nascimento' => $obCollaborators->data_nascimento,
-//               'atribuicao' => $obCollaborators->atribuicao
-//            ]);
-//
-//        }
-//
-//        return $itens;
-//    }
 
 }

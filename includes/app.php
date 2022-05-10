@@ -33,5 +33,5 @@ MiddlewareQueue::setMap([
 
 // DEFINE O MAPEAMENTO DE MIDDLEWARES PADRÕES(EXECUTADO EM TODAS AS ROTAS)
 MiddlewareQueue::setDefault([
-    'maintenance'
+    'maintenance',
 ]);

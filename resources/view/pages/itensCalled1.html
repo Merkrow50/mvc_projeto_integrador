@@ -4,7 +4,11 @@
     <td>{{data}}</td>
     <td>{{distancia_percorrida}}</td>
     <td><ul>
-        <li><button class="custom-btn btn-edit">Editar</button></li>
-        <li><button class="custom-btn btn-delete">Deletar</button></li>
+        <li><a href="{{URL}}/list/called/form/{{chamado_id}}">
+            <button class="custom-btn btn-edit">Editar</button>
+        </a></li>
+        <li><a href="{{URL}}/list/called/delete/{{chamado_id}}">
+            <button class="custom-btn btn-delete">Deletar</button>
+        </a></li>
     </ul></td>
 </tr>

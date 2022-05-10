@@ -41,9 +41,12 @@ class VehiclesList extends Page
 
         $results = EntityVehicles::getVehicle(null, 'veiculo_id DESC', $obPagination->getLimit());
 
+
+
         while ($obVehicles = $results->fetchObject(Vehicles::class)){
 
             $itens .= View::render('pages/itensVehicles',[
+                'veiculo_id' => $obVehicles->veiculo_id,
                 'ano' => $obVehicles->ano,
                 'modelo' => $obVehicles->modelo,
                 'autonomia' => $obVehicles->autonomia,

@@ -3,7 +3,11 @@
     <td>{{ano}}</td>
     <td>{{autonomia}}</td>
     <td><ul>
-        <li><button class="custom-btn btn-edit">Editar</button></li>
-        <li><button class="custom-btn btn-delete">Deletar</button></li>
+        <li><a href="{{URL}}/list/vehicles/form/{{veiculo_id}}">
+            <button class="custom-btn btn-edit">Editar</button>
+        </a></li>
+        <li><a href="{{URL}}/list/vehicles/delete/{{veiculo_id}}">
+            <button class="custom-btn btn-delete">Deletar</button>
+        </a></li>
     </ul></td>
 </tr>

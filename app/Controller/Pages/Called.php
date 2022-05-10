@@ -72,7 +72,7 @@ class Called extends Page
         $obCalled->distancia_percorrida = $postVars['distancia_percorrida'];
         $obCalled->cadastrar();
 
-        return self::getCalled();
+        $request->getRouter()->redirect('/list/called');
     }
 
 }

@@ -3,7 +3,11 @@
     <td>{{matricula}}</td>
     <td>{{habilitado}}</td>
     <td><ul>
-        <li><button class="custom-btn btn-edit">Editar</button></li>
-        <li><button class="custom-btn btn-delete">Deletar</button></li>
+        <li><a href="{{URL}}/list/collaborators/form/{{colaborador_id}}">
+            <button class="custom-btn btn-edit">Editar</button>
+        </a></li>
+        <li><a href="{{URL}}/list/collaborators/delete/{{colaborador_id}}">
+            <button class="custom-btn btn-delete">Deletar</button>
+        </a></li>
     </ul></td>
 </tr>
