@@ -16,7 +16,7 @@ class CalledList extends Page
     {
 
         // View da home
-        $content = View::render('pages/calledList',[
+        $content = View::render('pages/calledlist',[
             'itens' => self::getCalledItens($request,$obPagination),
             'pagination' => parent::getPagination($request, $obPagination)
         ]);
