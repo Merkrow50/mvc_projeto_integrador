@@ -1,27 +1,51 @@
-<form method="post">
-  <h1 class="title-new-entity">Novo chamado</h1>
-  <div class="form-group">
-    <label for="input-veiculo">Veículo</label>
-    <select class="form-control"  id="input-veiculo" name="veiculo_id">
-      {{options-vehicles}}
-    </select>
-  </div>
-  <div class="form-group">
-  <label for="input-colaborador">Colaborador</label>
-  <select class="form-control"  id="input-colaborador" name="colaborador_id">
-    {{options-collaborators}}
-  </select>
-  </div>
-  <div class="form-group">
-  <label for="input-data">Data</label>
-  <input type="date" class="form-control" id="input-data" name="data">
-  </div>
-  <div class="form-group">
-    <label for="input-distancia">Distância Percorrida</label>
-    <input type="number" class="form-control" id="input-distancia" name="distancia_percorrida">
-  </div>
-  <div class="button-form">
-    <button type="button" class="btn btn-primary" id="btn-cancelar" onclick="history.back()">Cancelar</button>
-    <button type="submit" class="btn btn-primary">Salvar</button>
-  </div>
-</form>
+<div class="container-form">
+  <h1 style="padding: 2rem 0; text-align:center;">Novo chamado</h1>
+  <form>
+    <div class="row">
+      <div class="col-25">
+        <label for="veiculo">Veículo</label>
+      </div>
+      <div class="col-75">
+        <select id="veiculo" name="veiculo_id">
+          {{options-vehicles}}
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="colaborador">Colaborador</label>
+      </div>
+      <div class="col-75">
+        <select id="colaborador" name="colaborador_id">
+          {{options-collaborators}}
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="data">Data e Horario</label>
+      </div>
+      <div class="col-75">
+        <input type="datetime-local" id="data" name="data" placeholder="Data do chamado...">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="distancia">Distância Total (KM)</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="distancia" name="distancia_percorrida" placeholder="Distância total do chamado em KM...">
+      </div>
+    </div>
+    <div class="row" style="padding: 25px">
+      <div class="col-50" style="display:flex;">
+        <input type="button" onclick="history.back();" value="Cancelar">
+      </div>
+      <div class="col-50">
+        <input type="submit" value="Salvar">
+      </div>
+    </div>
+  </form>
+</div>

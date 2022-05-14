@@ -1,22 +1,40 @@
-<form method="post">
-  <h1 class="title-new-entity">Novo colaborador</h1>
-  <div class="form-group">
-    <label for="inputName">Nome</label>
-    <input type="text" class="form-control" id="inputName" name="nome" aria-describedby="nameHelp">
-  </div>
-  <div class="form-group">
-    <label for="inputMatricula">Matricula</label>
-    <input type="text" class="form-control" id="inputMatricula" name="matricula" aria-describedby="matriculaHelp">
-  </div>
-  <div class="form-group">
-    <label for="inputHabilitado">Habilitado?</label>
-    <select class="form-control"  id="inputHabilitado" name="habilitado">
-      <option value="1">Sim</option>
-      <option value="0">Não</option>
-    </select>
-  </div>
-  <div class="button-form">
-    <button type="button" class="btn btn-primary" id="btn-cancelar" onclick="history.back()">Cancelar</button>
-    <button type="submit" class="btn btn-primary">Salvar</button>
-  </div>
-</form>
+<div class="container-form">
+  <h1 style="padding: 2rem 0; text-align:center;">Novo colaborador</h1>
+  <form>
+    <div class="row">
+      <div class="col-25">
+        <label for="nome">Nome</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="nome" name="nome" placeholder="Seu nome...">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="matricula">Matrícula</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="matricula" name="matricula" placeholder="Seu número de matrícula...">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+      <label for="habilitado">Habilitado?</label>
+    </div>
+    <div class="col-75">
+      <select id="habilitado" name="habilitado">
+        <option value="1">Sim</option>
+        <option value="0">Não</option>
+      </select>
+      </div>
+    </div>
+    <div class="row" style="padding: 25px">
+      <div class="col-50" style="display:flex;">
+      <input type="button" onclick="history.back();" value="Cancelar">
+    </div>
+      <div class="col-50">
+      <input type="submit" value="Salvar">
+      </div>
+    </div>
+  </form>
+</div>

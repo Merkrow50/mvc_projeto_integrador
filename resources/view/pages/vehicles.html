@@ -1,19 +1,37 @@
-<form method="post">
-  <h1 class="title-new-entity">{{title}}</h1>
-  <div class="form-group">
-    <label for="inputModelo">Modelo</label>
-    <input type="text" class="form-control" id="inputModelo" name="modelo" value="{{modelo}}" aria-describedby="modeloHelp">
-  </div>
-  <div class="form-group">
-    <label for="inputAno">Ano</label>
-    <input type="text" class="form-control" id="inputAno" value="{{ano}}" name="ano">
-  </div>
-  <div class="form-group">
-    <label for="inputAutonomia">Autonomia</label>
-    <input type="text" class="form-control" id="inputAutonomia" name="autonomia" value="{{autonomia}}" aria-describedby="autonomiaHelp">
-  </div>
-  <div class="button-form">
-    <button type="button" class="btn btn-primary" id="btn-cancelar" onclick="history.back()">Cancelar</button>
-    <button type="submit" class="btn btn-primary">Salvar</button>
-  </div>
-</form>
+<div class="container-form">
+  <h1 style="padding: 2rem 0; text-align:center;">Novo veiculo</h1>
+  <form method="post">
+    <div class="row">
+      <div class="col-25">
+        <label for="modelo">Modelo</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="modelo" name="modelo" value="{{modelo}}" placeholder="Modelo do veiculo...">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="ano">Ano</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="ano" name="ano" value="{{ano}}" placeholder="Ano do veiculo...">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="autonomia">Autonomia (km/L)</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="autonomia" name="autonomia" value="{{autonomia}}" placeholder="Autonomia do veiculo km/L...">
+      </div>
+    </div>
+    <div class="row" style="padding: 25px">
+      <div class="col-50" style="display:flex;">
+        <input type="button" onclick="history.back();" value="Cancelar">
+      </div>
+      <div class="col-50">
+        <input type="submit" value="Salvar">
+      </div>
+    </div>
+  </form>
+</div>

@@ -3,12 +3,12 @@
     <td>{{colaborador}}</td>
     <td>{{data}}</td>
     <td>{{distancia_percorrida}}</td>
-    <td><ul>
-        <li><a href="{{URL}}/list/called/form/{{chamado_id}}">
-            <button class="custom-btn btn-edit">Editar</button>
-        </a></li>
-        <li><a href="{{URL}}/list/called/delete/{{chamado_id}}">
-            <button class="custom-btn btn-delete">Deletar</button>
-        </a></li>
-    </ul></td>
+    <td width="5%">
+        <a href="{{URL}}/list/called/form/{{chamado_id}}">
+            <i class="fas fa-edit" style="font-size: x-large; color: #0583D2;"></i>
+        </a>
+        <a href="{{URL}}/list/called/delete/{{chamado_id}}">
+            <i class="fas fa-trash-alt" style="font-size: x-large; color: #FF0000;"></i>
+        </a>
+    </td>
 </tr>

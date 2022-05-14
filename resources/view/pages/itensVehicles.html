@@ -2,12 +2,12 @@
     <td>{{modelo}}</td>
     <td>{{ano}}</td>
     <td>{{autonomia}}</td>
-    <td><ul>
-        <li><a href="{{URL}}/list/vehicles/form/{{veiculo_id}}">
-            <button class="custom-btn btn-edit">Editar</button>
-        </a></li>
-        <li><a href="{{URL}}/list/vehicles/delete/{{veiculo_id}}">
-            <button class="custom-btn btn-delete">Deletar</button>
-        </a></li>
-    </ul></td>
+    <td width="5%">
+        <a href="{{URL}}/list/vehicles/form/{{veiculo_id}}">
+            <i class="fas fa-edit" style="font-size: x-large; color: #0583D2;"></i>
+        </a>
+        <a href="{{URL}}/list/vehicles/delete/{{veiculo_id}}">
+            <i class="fas fa-trash-alt" style="font-size: x-large; color: #FF0000;"></i>
+        </a>
+    </td>
 </tr>
