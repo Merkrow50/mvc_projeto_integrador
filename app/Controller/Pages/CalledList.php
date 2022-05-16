@@ -40,7 +40,7 @@ class CalledList extends Page
 
         $paginaAtual = $queryParams['page'] ?? 1;
 
-        $obPagination = new Pagination($quantidadeTotal, $paginaAtual,3);
+        $obPagination = new Pagination($quantidadeTotal, $paginaAtual,5);
 
         $results = EntityCalled::getCalleds(null, 'chamado_id DESC', $obPagination->getLimit());
 
@@ -56,10 +56,21 @@ class CalledList extends Page
         while ($obCalleds = $results->fetchObject(Called::class)){
             $getVehicle = \App\Model\Entity\Vehicles::getVehicle("veiculo_id = $obCalleds->veiculo_id", 'veiculo_id DESC');
 
+            $obVehicle = $getVehicle->fetchObject(Vehicles::class);
+
+            $CG = ($obCalleds->hodometro_finish - $obCalleds->hodometro_start) / $obVehicle->autonomia;
+            $pegada = ($CG * 0.73 * 0.75 * 3.7);
+
+
             $itens .= View::render('pages/itensCalled1',[
-                'veiculo' => $getVehicle->fetchObject(Vehicles::class)->modelo,
+                'chamado_id' => $obCalleds->chamado_id,
+                'veiculo' => $obVehicle->modelo,
                 'data' => $obCalleds->data,
-                'distancia_percorrida' => $obCalleds->distancia_percorrida,
+                'hodometro_start' => $obCalleds->hodometro_start,
+                'hodometro_finish' => $obCalleds->hodometro_finish,
+                'distancia_percorrida' => $obCalleds->status != "EM_ANDAMENTO" ?  $obCalleds->hodometro_finish - $obCalleds->hodometro_start." Km" : '',
+                'pegada' => $obCalleds->status != "EM_ANDAMENTO" ? $pegada." Km/L" : '',
+                'status' => $obCalleds->status,
                 'colaborador' => $colaborador[$i]->nome
             ]);
             ++$i;

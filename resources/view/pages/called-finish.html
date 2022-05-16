@@ -1,0 +1,21 @@
+<div class="container-form">
+  <h1 style="padding: 2rem 0; text-align:center;">Finalizar chamado</h1>
+  <form method="post">
+    <div class="row">
+      <div class="col-25">
+        <label for="hodometro_finish">Hodômetro (Saída)</label>
+      </div>
+      <div class="col-75">
+        <input type="number" id="hodometro_finish" name="hodometro_finish" value="{{hodometro_finish}}" placeholder="Valor final do hodômetro do veículo...">
+      </div>
+    </div>
+    <div class="row" style="padding: 25px">
+      <div class="col-50" style="display:flex;">
+        <input type="button" onclick="history.back();" value="Cancelar">
+      </div>
+      <div class="col-50">
+        <input type="submit" value="Finalizar">
+      </div>
+    </div>
+  </form>
+</div>

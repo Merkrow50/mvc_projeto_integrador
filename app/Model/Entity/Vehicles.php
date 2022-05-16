@@ -2,6 +2,8 @@
 
 namespace App\Model\Entity;
 use App\DatabaseManager\Database;
+use Exception;
+use PDOException;
 
 
 class Vehicles {
@@ -42,7 +44,7 @@ class Vehicles {
 
     public function deletar(){
 
-        $this->veiculo_id = (new Database('veiculo'))->delete('veiculo_id = '.$this->veiculo_id);
+        $this->veiculo_id = (new Database('veiculo'))->delete('veiculo_id = ' . $this->veiculo_id);
 
         return true;
     }

@@ -2,13 +2,20 @@
     <td>{{veiculo}}</td>
     <td>{{colaborador}}</td>
     <td>{{data}}</td>
+    <td>{{hodometro_start}}</td>
+    <td>{{hodometro_finish}}</td>
     <td>{{distancia_percorrida}}</td>
-    <td width="5%">
-        <a href="{{URL}}/list/called/form/{{chamado_id}}">
-            <i class="fas fa-edit" style="font-size: x-large; color: #0583D2;"></i>
+    <td>{{pegada}}</td>
+    <td>{{status}}</td>
+    <td width="15%" style="text-align: center;">
+        <a href="{{URL}}/list/calleds/form/{{chamado_id}}">
+            <i class="fas fa-edit" style="font-size: x-large; color: #0583D2;padding: 10px;"></i>
         </a>
-        <a href="{{URL}}/list/called/delete/{{chamado_id}}">
-            <i class="fas fa-trash-alt" style="font-size: x-large; color: #FF0000;"></i>
+        <a href="{{URL}}/list/calleds/finish/{{chamado_id}}">
+            <i class="fas fa-flag-checkered" style="font-size: x-large; color: #000000; padding: 10px;"></i>
+        </a>
+        <a href="{{URL}}/list/calleds/delete/{{chamado_id}}">
+            <i class="fas fa-trash-alt" style="font-size: x-large; color: #FF0000;padding: 10px;"></i>
         </a>
     </td>
 </tr>

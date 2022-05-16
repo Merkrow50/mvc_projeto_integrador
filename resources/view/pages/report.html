@@ -1,0 +1,33 @@
+<div class="container-form">
+  <h1 style="padding: 2rem 0; text-align:center;">Relatório</h1>
+  <form method="post">
+
+
+    <div class="row">
+      <div class="col-25">
+        <label for="start_date">Data início</label>
+      </div>
+      <div class="col-75">
+        <input type="datetime-local" id="start_date" name="start_date" placeholder="Data do chamado...">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="finish_date">Data fim</label>
+      </div>
+      <div class="col-75">
+        <input type="datetime-local" id="finish_date" name="finish_date" placeholder="Data do chamado...">
+      </div>
+    </div>
+
+    <div class="row" style="padding: 25px">
+      <div class="col-50" style="display:flex;">
+        <input type="button" onclick="history.back();" value="Cancelar">
+      </div>
+      <div class="col-50">
+        <input type="submit" value="Gerar Relatório">
+      </div>
+    </div>
+  </form>
+</div>

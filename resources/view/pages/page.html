@@ -163,7 +163,6 @@
 
       /* The side navigation menu */
       .sidebar {
-        transition: all 1s linear;
         margin: 0;
         padding: 0;
         width: 200px;
@@ -381,6 +380,79 @@
       }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* The Modal (background) */
+    .modal {
+      display: block; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      border: 1px solid #888;
+      width: 80%;
+      border-radius: 20px;
+    }
+
+    .modal-body{
+      padding: 10px;
+    }
+
+    .modal-header {
+      background-color:  #FF0000;
+      width: 100%;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    .modal-title{
+      margin: 0 !important;
+      padding: 15px !important;
+      color: #FFFFFF;
+    }
+
+    .modal-footer{
+      margin: 15px;
+    }
+
+    .modal-button-confirm{
+      float: none!important;
+      border: none!important;
+      color: white!important;
+      padding: 5px 16px!important;
+      text-align: center!important;
+      text-decoration: none!important;
+      display: inline-block!important;
+      font-size: 16px!important;
+    }
+
   </style>
 </head>
 <body>
@@ -418,6 +490,7 @@
   function w3_close() {
     document.getElementById("sidebar").style.display = "none";
   }
+
 </script>
 </body>
 </html>

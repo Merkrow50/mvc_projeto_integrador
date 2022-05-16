@@ -43,7 +43,7 @@ class Vehicles extends Page {
             'ano' => $obVehicle->ano
         ]);
 
-        return parent::getPage('Novo veiculo', $content);
+        return parent::getPage('Editar veiculo', $content);
     }
 
     public static function editVehicle($request, $id){
@@ -65,6 +65,13 @@ class Vehicles extends Page {
         $obVehicle->deletar();
 
         $request->getRouter()->redirect('/list/vehicles');
+    }
+
+    public static function getDeleteVehicle($request, $id){
+
+        $content = View::render('pages/delete',[]);
+
+        return parent::getPage('Deletar veiculo', $content);
     }
 
 }

@@ -42,6 +42,42 @@ $obRouter->get('/list/collaborators',[
     }
 ]);
 
+$obRouter->get('/list/collaborators/form/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Collaborators::getEditCollaborators($request, $id));
+    }
+]);
+
+$obRouter->post('/list/collaborators/form/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Collaborators::editCollaborators($request, $id));
+    }
+]);
+
+$obRouter->post('/list/collaborators/delete/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Collaborators::deleteCollaborators($request, $id));
+    }
+]);
+
+$obRouter->get('/list/collaborators/delete/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Collaborators::getDeleteCollaborators($request, $id));
+    }
+]);
+
 $obRouter->get('/contato',[
     'middlewares' => [
         'require-admin-login'
@@ -50,6 +86,26 @@ $obRouter->get('/contato',[
         return new Response(200, Pages\Contact::getContact());
     }
 ]);
+
+$obRouter->get('/reports',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function(){
+        return new Response(200, Pages\Report::getReport());
+    }
+]);
+
+$obRouter->post('/reports',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function(){
+        return new Response(200, Pages\Report::generateReport());
+    }
+]);
+
+
 
 $obRouter->get('/pegada',[
     'middlewares' => [
@@ -106,21 +162,22 @@ $obRouter->post('/list/vehicles/delete/{id}',[
     }
 ]);
 
+$obRouter->get('/list/vehicles/delete/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Vehicles::getDeleteVehicle($request, $id));
+    }
+]);
+
+
 $obRouter->get('/list/vehicles',[
     'middlewares' => [
         'require-admin-login'
     ],
     function($request){
         return new Response(200, Pages\VehiclesList::getVehiclesList($request));
-    }
-]);
-
-$obRouter->delete('/list/vehicles',[
-    'middlewares' => [
-        'require-admin-login'
-    ],
-    function($request){
-        return new Response(200, Pages\VehiclesList::deleteVehicle($request));
     }
 ]);
 
@@ -149,5 +206,59 @@ $obRouter->post('/list/calleds/form',[
     ],
     function($request){
         return new Response(200, Pages\Called::insertCalled($request));
+    }
+]);
+
+$obRouter->post('/list/calleds/form/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Called::editCalled($request, $id));
+    }
+]);
+
+$obRouter->get('/list/calleds/form/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Called::getEditCalled($request, $id));
+    }
+]);
+
+$obRouter->post('/list/calleds/delete/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Called::deleteCalled($request, $id));
+    }
+]);
+
+$obRouter->get('/list/calleds/delete/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Called::getDeleteCalled($request, $id));
+    }
+]);
+
+$obRouter->post('/list/calleds/finish/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Called::finishCalled($request, $id));
+    }
+]);
+
+$obRouter->get('/list/calleds/finish/{id}',[
+    'middlewares' => [
+        'require-admin-login'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Called::getFinishCalled($request, $id));
     }
 ]);

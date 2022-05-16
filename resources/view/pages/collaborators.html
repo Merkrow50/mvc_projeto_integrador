@@ -1,12 +1,12 @@
 <div class="container-form">
   <h1 style="padding: 2rem 0; text-align:center;">Novo colaborador</h1>
-  <form>
+  <form method="post">
     <div class="row">
       <div class="col-25">
         <label for="nome">Nome</label>
       </div>
       <div class="col-75">
-        <input type="text" id="nome" name="nome" placeholder="Seu nome...">
+        <input type="text" id="nome" name="nome" placeholder="Seu nome..." value="{{nome}}">
       </div>
     </div>
     <div class="row">
@@ -14,7 +14,7 @@
         <label for="matricula">Matrícula</label>
       </div>
       <div class="col-75">
-        <input type="text" id="matricula" name="matricula" placeholder="Seu número de matrícula...">
+        <input type="text" id="matricula" name="matricula" placeholder="Seu número de matrícula..." value="{{matricula}}">
       </div>
     </div>
     <div class="row">
@@ -23,8 +23,8 @@
     </div>
     <div class="col-75">
       <select id="habilitado" name="habilitado">
-        <option value="1">Sim</option>
-        <option value="0">Não</option>
+        <option {{selected_true}} value="1">Sim</option>
+        <option {{selected_false}} value="0">Não</option>
       </select>
       </div>
     </div>

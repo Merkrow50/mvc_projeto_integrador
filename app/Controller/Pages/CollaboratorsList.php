@@ -38,13 +38,14 @@ class CollaboratorsList extends Page
 
         $paginaAtual = $queryParams['page'] ?? 1;
 
-        $obPagination = new Pagination($quantidadeTotal, $paginaAtual,3);
+        $obPagination = new Pagination($quantidadeTotal, $paginaAtual,5);
 
         $results = EntityCollaborators::getCollaborators(null, 'colaborador_id DESC', $obPagination->getLimit());
 
         while ($obCollaborators = $results->fetchObject(Collaborators::class)){
 
             $itens .= View::render('pages/itensCollaborators',[
+                'colaborador_id' => $obCollaborators->colaborador_id,
                 'nome' => $obCollaborators->nome,
                 'matricula' => $obCollaborators->matricula,
                 'habilitado' => $obCollaborators->habilitado

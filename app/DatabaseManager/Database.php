@@ -98,6 +98,9 @@ class Database{
       $statement->execute($params);
       return $statement;
     }catch(PDOException $e){
+        if ($e->errorInfo[1] == 1451 ) {
+            throw new PDOException("Não foi possível excluir ou atualizar este item. Verifique se não há nenhum chamado vinculado a este item.");
+        }
       die('ERROR: '.$e->getMessage());
     }
   }

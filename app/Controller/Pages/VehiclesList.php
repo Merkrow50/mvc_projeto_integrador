@@ -37,7 +37,7 @@ class VehiclesList extends Page
 
         $paginaAtual = $queryParams['page'] ?? 1;
 
-        $obPagination = new Pagination($quantidadeTotal, $paginaAtual,3);
+        $obPagination = new Pagination($quantidadeTotal, $paginaAtual,5);
 
         $results = EntityVehicles::getVehicle(null, 'veiculo_id DESC', $obPagination->getLimit());
 
