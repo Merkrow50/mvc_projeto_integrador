@@ -100,8 +100,8 @@ $obRouter->post('/reports',[
     'middlewares' => [
         'require-admin-login'
     ],
-    function(){
-        return new Response(200, Pages\Report::generateReport());
+    function($request){
+        return new Response(200, Pages\Report::processReport($request));
     }
 ]);
 

@@ -69,7 +69,7 @@ class CalledList extends Page
                 'hodometro_start' => $obCalleds->hodometro_start,
                 'hodometro_finish' => $obCalleds->hodometro_finish,
                 'distancia_percorrida' => $obCalleds->status != "EM_ANDAMENTO" ?  $obCalleds->hodometro_finish - $obCalleds->hodometro_start." Km" : '',
-                'pegada' => $obCalleds->status != "EM_ANDAMENTO" ? $pegada." Km/L" : '',
+                'pegada' => $obCalleds->status != "EM_ANDAMENTO" ? $pegada." Kg/L" : '',
                 'status' => $obCalleds->status,
                 'colaborador' => $colaborador[$i]->nome
             ]);
