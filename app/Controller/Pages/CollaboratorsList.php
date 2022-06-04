@@ -32,7 +32,7 @@ class CollaboratorsList extends Page
 
 
         //QUANTIDADE TOTAL DE REGISTROS
-        $quantidadeTotal = EntityCollaborators::getCollaborators(null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+        $quantidadeTotal = EntityCollaborators::getCollaborators("deleted = '0'", null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
 
         $queryParams = $request->getQueryParams();
 
@@ -40,7 +40,7 @@ class CollaboratorsList extends Page
 
         $obPagination = new Pagination($quantidadeTotal, $paginaAtual,5);
 
-        $results = EntityCollaborators::getCollaborators(null, 'colaborador_id DESC', $obPagination->getLimit());
+        $results = EntityCollaborators::getCollaborators("deleted = '0'", 'colaborador_id DESC', $obPagination->getLimit());
 
         while ($obCollaborators = $results->fetchObject(Collaborators::class)){
 
@@ -48,7 +48,7 @@ class CollaboratorsList extends Page
                 'colaborador_id' => $obCollaborators->colaborador_id,
                 'nome' => $obCollaborators->nome,
                 'matricula' => $obCollaborators->matricula,
-                'habilitado' => $obCollaborators->habilitado
+                'habilitado' => $obCollaborators->habilitado ? 'SIM' : 'NÃO'
             ]);
 
         }

@@ -28,7 +28,12 @@ View::init([
 MiddlewareQueue::setMap([
     'maintenance' => \App\Http\Middleware\Maintenance::class,
     'require-admin-logout' => \App\Http\Middleware\RequireAdminLogout::class,
-    'require-admin-login' => \App\Http\Middleware\RequireAdminLogin::class
+    'require-admin-login' => \App\Http\Middleware\RequireAdminLogin::class,
+    'required-role-operator' => \App\Http\Middleware\RoleOperator::class,
+    'required-role-admin' => \App\Http\Middleware\RoleAdmin::class,
+    'required-role-driver' => \App\Http\Middleware\RoleDriver::class,
+    'required-role-operator-driver' => \App\Http\Middleware\RoleOperatorAndDriver::class,
+
 ]);
 
 // DEFINE O MAPEAMENTO DE MIDDLEWARES PADRÕES(EXECUTADO EM TODAS AS ROTAS)

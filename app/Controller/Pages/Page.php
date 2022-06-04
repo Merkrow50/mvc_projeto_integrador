@@ -30,6 +30,7 @@
         'title' => $title,
         'header' => self::getHeader(),
         'footer' => self::getFooter(),
+        'role' => $_SESSION['admin']['usuario']['role'],
         'content' => $content,
       ]);
     }

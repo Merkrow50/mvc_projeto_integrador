@@ -31,13 +31,13 @@ class Collaborators extends Page {
       $obCollaborators->cadastrar();
 
 
-      $request->getRouter()->redirect('/list/collaborators');
+      $request->getRouter()->redirect('/list/collaborators?status=created');
   }
 
 
     public static function getEditCollaborators($request, $id){
 
-        $obCollaborators = EntityCollaborators::getCollaborators('colaborador_id = '."'$id'")->fetchObject(EntityCollaborators::class);
+        $obCollaborators = EntityCollaborators::getCollaborators('colaborador_id = '."'$id' and deleted = '0'")->fetchObject(EntityCollaborators::class);
 
         $content = View::render('pages/collaborators',[
             'nome' => $obCollaborators->nome,
@@ -52,7 +52,7 @@ class Collaborators extends Page {
     public static function editCollaborators($request, $id){
         $postVars = $request->getPostVars();
 
-        $obCollaborators = EntityCollaborators::getCollaborators('colaborador_id = '."'$id'")->fetchObject(EntityCollaborators::class);
+        $obCollaborators = EntityCollaborators::getCollaborators('colaborador_id = '."'$id' and deleted = '0'")->fetchObject(EntityCollaborators::class);
 
 
         $obCollaborators->nome = $postVars['nome'] ?? $obCollaborators->nome;
@@ -60,15 +60,17 @@ class Collaborators extends Page {
         $obCollaborators->habilitado = $postVars['habilitado'] ?? $obCollaborators->habilitado;
         $obCollaborators->atualizar();
 
-        $request->getRouter()->redirect('/list/collaborators');
+        $request->getRouter()->redirect('/list/collaborators?status=edited');
     }
 
     public static function deleteCollaborators($request, $id){
-        $obCollaborators = EntityCollaborators::getCollaborators('colaborador_id = '."'$id'")->fetchObject(EntityCollaborators::class);
+        $obCollaborators = EntityCollaborators::getCollaborators('colaborador_id = '."'$id' and deleted = '0'")->fetchObject(EntityCollaborators::class);
+
+        $obCollaborators->deleted = true;
 
         $obCollaborators->deletar();
 
-        $request->getRouter()->redirect('/list/collaborators');
+        $request->getRouter()->redirect('/list/collaborators?status=deleted');
     }
 
     public static function getDeleteCollaborators($request, $id){

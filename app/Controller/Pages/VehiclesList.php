@@ -31,7 +31,7 @@ class VehiclesList extends Page
         $itens = '';
 
         //QUANTIDADE TOTAL DE REGISTROS
-        $quantidadeTotal = EntityVehicles::getVehicle(null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+        $quantidadeTotal = EntityVehicles::getVehicle("deleted = '0'", null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
 
         $queryParams = $request->getQueryParams();
 
@@ -39,33 +39,23 @@ class VehiclesList extends Page
 
         $obPagination = new Pagination($quantidadeTotal, $paginaAtual,5);
 
-        $results = EntityVehicles::getVehicle(null, 'veiculo_id DESC', $obPagination->getLimit());
-
-
+        $results = EntityVehicles::getVehicle("deleted = '0'", 'veiculo_id DESC', $obPagination->getLimit());
 
         while ($obVehicles = $results->fetchObject(Vehicles::class)){
-
-            $itens .= View::render('pages/itensVehicles',[
-                'veiculo_id' => $obVehicles->veiculo_id,
-                'ano' => $obVehicles->ano,
-                'modelo' => $obVehicles->modelo,
-                'autonomia' => $obVehicles->autonomia,
-            ]);
-
+                $itens .= View::render('pages/itensVehicles', [
+                    'veiculo_id' => $obVehicles->veiculo_id,
+                    'placa' => $obVehicles->placa,
+                    'ano' => $obVehicles->ano,
+                    'modelo' => $obVehicles->modelo,
+                    'autonomia' => $obVehicles->autonomia,
+                    'status' => $obVehicles->isEnable ? "Em espera" : "Em uso",
+                ]);
         }
 
 
 
 
         return $itens;
-    }
-
-
-    public static function deleteVehicle($request){
-        $postVars = $request->getPostVars();
-        $veiculo_id = $postVars['veiculo_id'];
-
-        $results = EntityVehicles::getVehicle("veiculo_id = $veiculo_id", 'veiculo_id DESC');
     }
 
 

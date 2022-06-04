@@ -1,5 +1,5 @@
 <div class="container-form">
-  <h1 style="padding: 2rem 0; text-align:center;">Novo chamado</h1>
+  <h1 style="padding: 2rem 0; text-align:center;">{{title}}</h1>
   <form method="post">
     <div class="row">
       <div class="col-25">
@@ -22,21 +22,12 @@
         </select>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-25">
-        <label for="data">Data e Horario</label>
-      </div>
-      <div class="col-75">
-        <input type="datetime-local" id="data" name="data" value="{{data}}" placeholder="Data do chamado...">
-      </div>
-    </div>
     <div class="row">
       <div class="col-25">
         <label for="hodometro_start">Hodômetro (Saída)</label>
       </div>
       <div class="col-75">
-        <input type="number" id="hodometro_start" name="hodometro_start" value="{{hodometro_start}}" placeholder="Valor atual do hodômetro do veículo...">
+        <input type="number" id="hodometro_start" name="hodometro_start" value="{{hodometro_start}}" required placeholder="Valor atual do hodômetro do veículo...">
       </div>
     </div>
     <div class="row" style="padding: 25px">

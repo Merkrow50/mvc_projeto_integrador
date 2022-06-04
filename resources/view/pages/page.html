@@ -290,7 +290,7 @@
 
 
     /* Style inputs, select elements and textareas */
-    input[type=text], input[type=datetime-local], input[type=number],select, textarea{
+    input[type=text], input[type=datetime-local], input[type=number], input[type=email], input[type=password], select, textarea{
       width: 100%;
       padding: 12px;
       border: 1px solid #ccc;
@@ -453,6 +453,57 @@
       font-size: 16px!important;
     }
 
+
+
+
+
+
+    /* The snackbar - position it at the bottom and in the middle of the screen */
+    #snackbar {
+      visibility: hidden; /* Hidden by default. Visible on click */
+      min-width: 250px; /* Set a default minimum width */
+      margin-left: -125px; /* Divide value of min-width by 2 */
+      background-color: #333; /* Black background color */
+      color: #fff; /* White text color */
+      text-align: center; /* Centered text */
+      border-radius: 2px; /* Rounded borders */
+      padding: 16px; /* Padding */
+      position: fixed; /* Sit on top of the screen */
+      z-index: 1; /* Add a z-index if needed */
+      left: 50%; /* Center the snackbar */
+      top: 30px; /* 30px from the bottom */
+    }
+
+    /* Show the snackbar when clicking on a button (class added with JavaScript) */
+    #snackbar.show {
+      visibility: visible; /* Show the snackbar */
+      /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+      However, delay the fade out process for 2.5 seconds */
+      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    /* Animations to fade the snackbar in and out */
+    @-webkit-keyframes fadein {
+      from {top: 0; opacity: 0;}
+      to {top: 30px; opacity: 1;}
+    }
+
+    @keyframes fadein {
+      from {top: 0; opacity: 0;}
+      to {top: 30px; opacity: 1;}
+    }
+
+    @-webkit-keyframes fadeout {
+      from {top: 30px; opacity: 1;}
+      to {top: 0; opacity: 0;}
+    }
+
+    @keyframes fadeout {
+      from {top: 30px; opacity: 1;}
+      to {top: 0; opacity: 0;}
+    }
+
   </style>
 </head>
 <body>
@@ -467,7 +518,7 @@
     <div class="column" style="text-align:right;"><a href="{{URL}}/admin/logout"><i class="fas fa-sign-out-alt" style="font-size: x-large; padding: 15px;"></i></a></div>
     </div>
   </div>
-
+  <div id="snackbar">Some text some message..</div>
   {{content}}
 
   {{footer}}
@@ -489,6 +540,79 @@
 
   function w3_close() {
     document.getElementById("sidebar").style.display = "none";
+  }
+
+  let _role = "{{role}}"
+
+  if(_role === "admin"){
+    document.getElementById("link_called").style.display = "none";
+  }
+
+  if(_role === "operator"){
+    document.getElementById("link_report").style.display = "none";
+    document.getElementById("link_vehicle").style.display = "none";
+    document.getElementById("link_collaborator").style.display = "none";
+    document.getElementById("link_user").style.display = "none";
+  }
+
+  if(_role === "driver"){
+    document.getElementById("link_report").style.display = "none";
+    document.getElementById("link_vehicle").style.display = "none";
+    document.getElementById("link_collaborator").style.display = "none";
+    document.getElementById("btn-novo").style.display = "none";
+    document.getElementById("link_user").style.display = "none";
+  }
+
+  function myFunction(message) {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+    x.innerText = message
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+
+
+  function refineURL()
+  {
+    //get full URL
+    var currURL= window.location.href; //get current address
+
+    //Get the URL between what's after '/' and befor '?'
+    //1- get URL after'/'
+    var afterDomain= currURL.substring(currURL.lastIndexOf('/') + 1);
+    //2- get the part before '?'
+    var beforeQueryString= afterDomain.split("?")[0];
+
+    return beforeQueryString;
+  }
+
+  const params = new URLSearchParams(window.location.search)
+  console.log(params.get('status'))
+  switch(params.get('status')){
+    case 'edited':
+      myFunction("Item editado com sucesso!");
+      window.history.pushState("object or string", "Title", window.location.pathname);
+      break;
+    case 'deleted':
+      myFunction("Item deletado com sucesso!");
+      window.history.pushState("object or string", "Title", window.location.pathname);
+      break;
+    case 'finished':
+      myFunction("Item finalizado com sucesso!");
+      window.history.pushState("object or string", "Title", window.location.pathname);
+      break;
+    case 'created':
+      myFunction("Item criado com sucesso!");
+      window.history.pushState("object or string", "Title", window.location.pathname);
+      break;
+    case 'canceled':
+      myFunction("Item cancelado com sucesso!");
+      window.history.pushState("object or string", "Title", window.location.pathname);
+      break;
   }
 
 </script>

@@ -26,5 +26,41 @@ class User
         return (new Database('usuarios'))->select("email = "."'$email'")->fetchObject(self::class);
     }
 
+    public function cadastrar(){
+
+        $this->id_usuarios = (new Database('usuarios'))->insert([
+            'nome' => $this->nome,
+            'email' => $this->email,
+            'senha' => $this->senha,
+            'role' => $this->role,
+        ]);
+
+        return true;
+    }
+
+
+    public function atualizar(){
+
+        $this->id_usuarios = (new Database('usuarios'))->update('id_usuarios = '.$this->id_usuarios, [
+            'nome' => $this->nome,
+            'email' => $this->email,
+            'role' => $this->role,
+        ]);
+
+        return true;
+    }
+
+    public function deletar(){
+
+        $this->id_usuarios = (new Database('usuarios'))->delete('id_usuarios = ' . $this->id_usuarios);
+
+        return true;
+    }
+
+
+    public static function getUsers($where = null, $order = null, $limit = null, $fields = '*'){
+        return (new Database('usuarios')) -> select($where, $order, $limit, $fields);
+    }
+
 
 }

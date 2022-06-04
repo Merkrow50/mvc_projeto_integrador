@@ -14,8 +14,11 @@ class Collaborators {
 
   public $habilitado;
 
+  public $deleted;
 
-  public function cadastrar(){
+
+
+    public function cadastrar(){
 
       $this->colaborador_id = (new Database('colaborador'))->insert([
           'nome' => $this->nome,
@@ -38,9 +41,18 @@ class Collaborators {
         return true;
     }
 
-    public function deletar(){
+    public function deleted(){
 
         $this->colaborador_id = (new Database('colaborador'))->delete('colaborador_id = ' . $this->colaborador_id);
+
+        return true;
+    }
+
+    public function deletar(){
+
+        $this->colaborador_id = (new Database('colaborador'))->update('colaborador_id = '.$this->colaborador_id, [
+            'deleted' => $this->deleted
+        ]);
 
         return true;
     }

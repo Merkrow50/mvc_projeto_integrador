@@ -22,7 +22,7 @@ class Report extends Page
         ]);
 
         // View da pagina
-        return parent::getPage('Contato', $content);
+        return parent::getPage('Relatório', $content);
     }
 
     public static function processReport($request)
@@ -37,9 +37,9 @@ class Report extends Page
 
 
 //        QUANTIDADE TOTAL DE REGISTROS
-        $quantidadeTotal = EntityCalled::getCalleds("data >= " . "'$start_date'" . " AND " . "data <= '$finish_date'", null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+        $quantidadeTotal = EntityCalled::getCalleds("data >= " . "'$start_date'" . " AND " . "data <= '$finish_date' AND status = 'FINALIZADO'", null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
 
-        $results = EntityCalled::getCalleds("data >= " . "'$start_date'" . " AND " . "data <= '$finish_date'", 'chamado_id DESC');
+        $results = EntityCalled::getCalleds("data >= " . "'$start_date'" . " AND " . "data <= '$finish_date' AND status = 'FINALIZADO'", 'chamado_id DESC');
 
         while ($obCalleds = $results->fetchObject(EntityCalled::class)) {
             $distancia_total += $obCalleds->hodometro_finish - $obCalleds->hodometro_start;

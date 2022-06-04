@@ -7,6 +7,7 @@ use App\Model\Entity\Collaborators as EntityCollaborators;
 use \App\Utils\View;
 use \App\Model\Entity\Called as EntityCalled;
 use DateTime;
+use DateTimeZone;
 
 class Called extends Page
 {
@@ -15,8 +16,9 @@ class Called extends Page
     {
 
         $content = View::render('pages/called', [
+            'title' => 'Novo chamado',
             'options-collaborators' => self::getOptionsCollaborators(0),
-            'options-vehicles' => self::getOptionsVehicles(0)
+            'options-vehicles' => self::getOptionsVehicles("AND isEnable = '1'", 0)
         ]);
 
         return parent::getPage('Novo colaborador', $content);
@@ -26,7 +28,7 @@ class Called extends Page
 
         $options = '';
 
-        $results = EntityCollaborators::getCollaborators(null, 'colaborador_id DESC');
+        $results = EntityCollaborators::getCollaborators("deleted = '0' AND habilitado = '1'", 'colaborador_id DESC');
 
         while ($obCollaborators = $results->fetchObject(Collaborators::class)){
 
@@ -42,11 +44,11 @@ class Called extends Page
 
     }
 
-    public static function getOptionsVehicles($selected){
+    public static function getOptionsVehicles($where, $selected){
 
         $options = '';
 
-        $results = EntityVehicles::getVehicle(null, 'veiculo_id DESC');
+        $results = EntityVehicles::getVehicle("deleted = '0'".$where, 'veiculo_id DESC');
 
         while ($obVehicles = $results->fetchObject(\App\Model\Entity\Vehicles::class)){
 
@@ -67,21 +69,24 @@ class Called extends Page
     {
         $postVars = $request->getPostVars();
 
+        $date = new DateTime("now", new DateTimeZone('America/Sao_Paulo') );
         $obCalled = new EntityCalled;
 
         $obCalled->veiculo_id = $postVars['veiculo_id'];
-        $obCalled->data = $postVars['data'];
+        $obCalled->data = $date->format('Y-m-d H:i:s');
         $obCalled->colaborador_id = $postVars['colaborador_id'];
         $obCalled->hodometro_start = $postVars['hodometro_start'];
         $obCalled->cadastrar();
 
-        $request->getRouter()->redirect('/list/calleds');
+        $request->getRouter()->redirect('/list/calleds?status=created');
     }
 
     public static function getFinishCalled($request, $id){
         $obCalled = EntityCalled::getCalleds('chamado_id = '."'$id'")->fetchObject(EntityCalled::class);
 
-        $content = View::render('pages/called-finish',[]);
+        $content = View::render('pages/called-finish',[
+            'title' => 'Finalizar chamado'
+        ]);
 
         return parent::getPage('Finalizar chamado', $content);
     }
@@ -92,9 +97,10 @@ class Called extends Page
         $obCalled = EntityCalled::getCalleds('chamado_id = '."'$id'")->fetchObject(EntityCalled::class);
 
         $obCalled->hodometro_finish = $postVars['hodometro_finish'] ?? $obCalled->hodometro_finish;
+        $obCalled->veiculo_id = $postVars['veiculo_id'] ?? $obCalled->veiculo_id;
         $obCalled->finalizar();
 
-        $request->getRouter()->redirect('/list/calleds');
+        $request->getRouter()->redirect('/list/calleds?status=finished');
     }
 
     public static function getEditCalled($request, $id){
@@ -102,9 +108,9 @@ class Called extends Page
         $obCalledCollaborators = EntityCalled::getCalledsCollaborators('chamado_id = '."'$id'")->fetchObject(EntityCalled::class);
 
         $content = View::render('pages/called',[
+            'title' => 'Editar chamado',
             'options-collaborators' => self::getOptionsCollaborators($obCalledCollaborators->colaborador_id),
-            'options-vehicles' => self::getOptionsVehicles($obCalled->veiculo_id),
-            'data' => (new DateTime($obCalled->data))->format('Y-m-d\TH:i:s'),
+            'options-vehicles' => self::getOptionsVehicles(null, $obCalled->veiculo_id),
             'hodometro_start' => $obCalled->hodometro_start
         ]);
 
@@ -126,19 +132,23 @@ class Called extends Page
         $obCalledCollaborators->colaborador_id = $postVars['colaborador_id'] ?? $obCalledCollaborators->colaborador_id;
         $obCalledCollaborators->atualizar_chamado_colaborador();
 
-        $request->getRouter()->redirect('/list/calleds');
+        $request->getRouter()->redirect('/list/calleds?status=edited');
     }
 
     public static function deleteCalled($request, $id){
         $obCalledCollaborators = EntityCalled::getCalledsCollaborators('chamado_id = '."'$id'")->fetchObject(EntityCalled::class);
 
+        $obCalledCollaborators->deleted = true;
+
         $obCalledCollaborators->deletar_chamado_colaborador();
 
         $obCalled = EntityCalled::getCalleds('chamado_id = '."'$id'")->fetchObject(EntityCalled::class);
 
+        $obCalled->deleted = true;
+
         $obCalled->deletar();
 
-        $request->getRouter()->redirect('/list/calleds');
+        $request->getRouter()->redirect('/list/calleds?status=deleted');
     }
 
     public static function getDeleteCalled($request, $id){

@@ -32,7 +32,6 @@ class CalledList extends Page
 
         $colaborador = [];
 
-
         //QUANTIDADE TOTAL DE REGISTROS
         $quantidadeTotal = EntityCalled::getCalleds(null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
 
@@ -42,9 +41,9 @@ class CalledList extends Page
 
         $obPagination = new Pagination($quantidadeTotal, $paginaAtual,5);
 
-        $results = EntityCalled::getCalleds(null, 'chamado_id DESC', $obPagination->getLimit());
+        $results = EntityCalled::getCalleds("deleted = '0'", 'chamado_id DESC', $obPagination->getLimit());
 
-        $results2 = EntityCalled::getCalledsCollaborators(null, 'chamado_id DESC');
+        $results2 = EntityCalled::getCalledsCollaborators("deleted = '0'", 'chamado_id DESC');
 
         while ($obCalleds = $results2->fetchObject(Called::class)){
             $getCollaborator = \App\Model\Entity\Collaborators::getCollaborators("colaborador_id = $obCalleds->colaborador_id", 'colaborador_id DESC');
@@ -63,13 +62,16 @@ class CalledList extends Page
 
 
             $itens .= View::render('pages/itensCalled1',[
+                'hidden_finish' => $obCalleds->status != "EM_ANDAMENTO"  ? "hidden" : "" || $_SESSION['admin']['usuario']['role'] === 'operator' ? "hidden" : "",
+                'hidden' => $_SESSION['admin']['usuario']['role'] === 'driver' ? "hidden" : "",
+                'canceled' => $obCalleds->status == "CANCELADO" ? 'hidden': '',
                 'chamado_id' => $obCalleds->chamado_id,
                 'veiculo' => $obVehicle->modelo,
                 'data' => $obCalleds->data,
                 'hodometro_start' => $obCalleds->hodometro_start,
                 'hodometro_finish' => $obCalleds->hodometro_finish,
-                'distancia_percorrida' => $obCalleds->status != "EM_ANDAMENTO" ?  $obCalleds->hodometro_finish - $obCalleds->hodometro_start." Km" : '',
-                'pegada' => $obCalleds->status != "EM_ANDAMENTO" ? $pegada." Kg/L" : '',
+                'distancia_percorrida' => $obCalleds->status == "FINALIZADO" ?  $obCalleds->hodometro_finish - $obCalleds->hodometro_start." Km" : '',
+                'pegada' => $obCalleds->status == "FINALIZADO" ? $pegada." Kg/L" : '',
                 'status' => $obCalleds->status,
                 'colaborador' => $colaborador[$i]->nome
             ]);

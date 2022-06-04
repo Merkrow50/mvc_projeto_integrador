@@ -3,10 +3,18 @@
   <form method="post">
     <div class="row">
       <div class="col-25">
+        <label for="placa">Placa</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="placa" name="placa" value="{{placa}}" required placeholder="Placa do veiculo...">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
         <label for="modelo">Modelo</label>
       </div>
       <div class="col-75">
-        <input type="text" id="modelo" name="modelo" value="{{modelo}}" placeholder="Modelo do veiculo...">
+        <input type="text" id="modelo" name="modelo" value="{{modelo}}" required placeholder="Modelo do veiculo...">
       </div>
     </div>
     <div class="row">
@@ -14,7 +22,7 @@
         <label for="ano">Ano</label>
       </div>
       <div class="col-75">
-        <input type="text" id="ano" name="ano" value="{{ano}}" placeholder="Ano do veiculo...">
+        <input type="number" id="ano" name="ano" value="{{ano}}" required placeholder="Ano do veiculo...">
       </div>
     </div>
     <div class="row">
@@ -22,7 +30,7 @@
         <label for="autonomia">Autonomia (km/L)</label>
       </div>
       <div class="col-75">
-        <input type="text" id="autonomia" name="autonomia" value="{{autonomia}}" placeholder="Autonomia do veiculo km/L...">
+        <input type="number" id="autonomia" name="autonomia" value="{{autonomia}}" required placeholder="Autonomia do veiculo km/L...">
       </div>
     </div>
     <div class="row" style="padding: 25px">

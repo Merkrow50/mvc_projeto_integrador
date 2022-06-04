@@ -21,8 +21,10 @@ class Called {
 
   public $chamado_id;
 
+  public $deleted;
 
-  public function cadastrar(){
+
+    public function cadastrar(){
 
       $this->chamado_id = (new Database('chamado'))->insert([
           'veiculo_id' => $this->veiculo_id,
@@ -34,6 +36,10 @@ class Called {
       $this->chamado_id = (new Database('chamado_colaborador'))->insert([
           'chamado_id' => $this->chamado_id,
           'colaborador_id' => $this->colaborador_id
+      ]);
+
+      $this->veiculo_id = (new Database('veiculo'))->update('veiculo_id = '.$this->veiculo_id ,[
+          'isEnable' => false
       ]);
 
       return true;
@@ -57,6 +63,10 @@ class Called {
             'status' => 'FINALIZADO'
         ]);
 
+        $this->veiculo_id = (new Database('veiculo'))->update('veiculo_id = '.$this->veiculo_id ,[
+            'isEnable' => true
+        ]);
+
         return true;
     }
 
@@ -72,14 +82,22 @@ class Called {
 
     public function deletar(){
 
-        $this->chamado_id = (new Database('chamado'))->delete('chamado_id = ' . $this->chamado_id);
+        $this->chamado_id = (new Database('chamado'))->update('chamado_id = '.$this->chamado_id, [
+            'deleted' => $this->deleted
+        ]);
+
+        $this->veiculo_id = (new Database('veiculo'))->update('veiculo_id = '.$this->veiculo_id ,[
+            'isEnable' => true
+        ]);
 
         return true;
     }
 
     public function deletar_chamado_colaborador(){
 
-        $this->chamado_id = (new Database('chamado_colaborador'))->delete('chamado_id = ' . $this->chamado_id);
+        $this->chamado_id = (new Database('chamado_colaborador'))->update('chamado_id = '.$this->chamado_id, [
+            'deleted' => $this->deleted
+        ]);
 
         return true;
     }
