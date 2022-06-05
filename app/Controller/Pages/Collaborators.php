@@ -11,6 +11,7 @@ class Collaborators extends Page {
   public static function getCollaborators(){
 
     $content = View::render('pages/collaborators',[
+        'title' => 'Novo colaborador',
         'nome' => '',
         'matricula' => '',
         'selected_true' => '',
@@ -40,6 +41,7 @@ class Collaborators extends Page {
         $obCollaborators = EntityCollaborators::getCollaborators('colaborador_id = '."'$id' and deleted = '0'")->fetchObject(EntityCollaborators::class);
 
         $content = View::render('pages/collaborators',[
+            'title' => 'Editar colaborador',
             'nome' => $obCollaborators->nome,
             'matricula' => $obCollaborators->matricula,
             'selected_true' => $obCollaborators->habilitado ? "" : 'selected',
