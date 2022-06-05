@@ -538,7 +538,6 @@
   if (btnNovo) {
     btnNovo.onclick = () => {
       document.location.href = `${document.location.pathname}/form`;
-      console.log('clicou');
     };
   }
 
@@ -584,7 +583,6 @@
   }
 
   const params = new URLSearchParams(window.location.search)
-  console.log(params.get('status'))
   switch(params.get('status')){
     case 'edited':
       myFunction("Item editado com sucesso!");
