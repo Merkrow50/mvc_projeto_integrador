@@ -62,8 +62,8 @@ class CalledList extends Page
 
 
             $itens .= View::render('pages/itensCalled1',[
-                'hidden_finish' => $obCalleds->status != "EM_ANDAMENTO"  ? "hidden" : "" || $_SESSION['admin']['usuario']['role'] === 'operator' ? "hidden" : "",
-//                'hidden_status' => $obCalleds->status == "FINALIZADO" ? "hidden" : '',
+                'hidden_finish' => $obCalleds->status != "EM_ANDAMENTO" || $_SESSION['admin']['usuario']['role'] === 'operator' ? "hidden" : "",
+                'hidden_status' => $obCalleds->status == "FINALIZADO" ? "hidden" : '',
                 'hidden' => $_SESSION['admin']['usuario']['role'] === 'driver' ? "hidden" : "",
                 'canceled' => $obCalleds->status == "CANCELADO" ? 'hidden': '',
                 'chamado_id' => $obCalleds->chamado_id,
