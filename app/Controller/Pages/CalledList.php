@@ -65,7 +65,7 @@ class CalledList extends Page
 //                'hidden_finish' => $obCalleds->status != "EM_ANDAMENTO"  ? "hidden" : "" || $_SESSION['admin']['usuario']['role'] === 'operator' ? "hidden" : "",
 //                'hidden_status' => $obCalleds->status == "FINALIZADO" ? "hidden" : '',
 //                'hidden' => $_SESSION['admin']['usuario']['role'] === 'driver' ? "hidden" : "",
-//                'canceled' => $obCalleds->status == "CANCELADO" ? 'hidden': '',
+                'canceled' => $obCalleds->status == "CANCELADO" ? 'hidden': '',
                 'chamado_id' => $obCalleds->chamado_id,
                 'veiculo' => $obVehicle->modelo,
                 'data' => $obCalleds->data,
