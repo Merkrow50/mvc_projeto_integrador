@@ -513,7 +513,7 @@
 <div class="content" id="content">
   <div class="w3-container w3-teal">
     <div class="row">
-    <div class="column"><button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button></div>
+    <div class="column"><button id="w3" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button></div>
     <div class="column" style="text-align:center;"><img src="{{URL}}/resources/view/images/logo-co2-branco.png" alt="logo" style="padding: 10px; width: 150px;"></div>
     <div class="column" style="text-align:right;"><a href="{{URL}}/admin/logout"><i class="fas fa-sign-out-alt" style="font-size: x-large; padding: 15px;"></i></a></div>
     </div>
@@ -526,6 +526,14 @@
 </div>
 
 <script>
+
+  $(document).on('click', function(e) {
+    let w3 = $("#w3");
+    if (!$(e.target).closest(w3).length) {
+      w3_close()
+    }
+  });
+
   let btnNovo = document.getElementById('btn-novo');
   if (btnNovo) {
     btnNovo.onclick = () => {
@@ -607,6 +615,7 @@
       window.history.pushState("object or string", "Title", window.location.pathname);
       break;
   }
+
 
 </script>
 </body>
