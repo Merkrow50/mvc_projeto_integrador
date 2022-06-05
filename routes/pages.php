@@ -9,6 +9,7 @@ use App\Model\Entity;
 $obRouter->get('/',[
     'middlewares' => [
         'require-admin-login',
+        'user-blocked'
     ],
   function(){
     return new Response(200, Pages\Home::getHome());
@@ -332,4 +333,67 @@ $obRouter->post('/list/users/form/{id}',[
         return new Response(200, Pages\User::editUser($request, $id));
     }
 ]);
+
+$obRouter->get('/list/users/blocked/{id}',[
+    'middlewares' => [
+        'require-admin-login',
+        'required-role-admin'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\User::getBlockedUser($request, $id));
+    }
+]);
+
+$obRouter->post('/list/users/blocked/{id}',[
+    'middlewares' => [
+        'require-admin-login',
+        'required-role-admin'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\User::blockedUser($request, $id));
+    }
+]);
+
+$obRouter->get('/list/users/unblocked/{id}',[
+    'middlewares' => [
+        'require-admin-login',
+        'required-role-admin'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\User::getUnBlockedUser($request, $id));
+    }
+]);
+
+$obRouter->post('/list/users/unblocked/{id}',[
+    'middlewares' => [
+        'require-admin-login',
+        'required-role-admin'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\User::unBlockedUser($request, $id));
+    }
+]);
+
+
+$obRouter->get('/list/calleds/cancel/{id}',[
+    'middlewares' => [
+        'require-admin-login',
+        'required-role-operator'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Called::getCancelledCalled($request, $id));
+    }
+]);
+
+$obRouter->post('/list/calleds/cancel/{id}',[
+    'middlewares' => [
+        'require-admin-login',
+        'required-role-operator'
+    ],
+    function($request, $id){
+        return new Response(200, Pages\Called::cancelCalled($request, $id));
+    }
+]);
+
+
 

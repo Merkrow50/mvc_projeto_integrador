@@ -33,7 +33,7 @@ class CalledList extends Page
         $colaborador = [];
 
         //QUANTIDADE TOTAL DE REGISTROS
-        $quantidadeTotal = EntityCalled::getCalleds(null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+        $quantidadeTotal = EntityCalled::getCalleds("deleted = '0'", null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
 
         $queryParams = $request->getQueryParams();
 
@@ -63,6 +63,7 @@ class CalledList extends Page
 
             $itens .= View::render('pages/itensCalled1',[
                 'hidden_finish' => $obCalleds->status != "EM_ANDAMENTO"  ? "hidden" : "" || $_SESSION['admin']['usuario']['role'] === 'operator' ? "hidden" : "",
+                'hidden_status' => $obCalleds->status == "FINALIZADO" ? "hidden" : '',
                 'hidden' => $_SESSION['admin']['usuario']['role'] === 'driver' ? "hidden" : "",
                 'canceled' => $obCalleds->status == "CANCELADO" ? 'hidden': '',
                 'chamado_id' => $obCalleds->chamado_id,

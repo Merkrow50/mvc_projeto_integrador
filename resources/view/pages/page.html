@@ -575,21 +575,6 @@
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
   }
 
-
-  function refineURL()
-  {
-    //get full URL
-    var currURL= window.location.href; //get current address
-
-    //Get the URL between what's after '/' and befor '?'
-    //1- get URL after'/'
-    var afterDomain= currURL.substring(currURL.lastIndexOf('/') + 1);
-    //2- get the part before '?'
-    var beforeQueryString= afterDomain.split("?")[0];
-
-    return beforeQueryString;
-  }
-
   const params = new URLSearchParams(window.location.search)
   console.log(params.get('status'))
   switch(params.get('status')){
@@ -609,8 +594,16 @@
       myFunction("Item criado com sucesso!");
       window.history.pushState("object or string", "Title", window.location.pathname);
       break;
-    case 'canceled':
+    case 'cancelled':
       myFunction("Item cancelado com sucesso!");
+      window.history.pushState("object or string", "Title", window.location.pathname);
+      break;
+    case 'blocked':
+      myFunction("Item bloqueado com sucesso!");
+      window.history.pushState("object or string", "Title", window.location.pathname);
+      break;
+    case 'unblocked':
+      myFunction("Item desbloqueado com sucesso!");
       window.history.pushState("object or string", "Title", window.location.pathname);
       break;
   }

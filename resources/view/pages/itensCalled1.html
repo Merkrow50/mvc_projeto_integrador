@@ -8,16 +8,16 @@
     <td>{{pegada}}</td>
     <td>{{status}}</td>
     <td width="15%" style="text-align: center;">
-        <a id="link_edit" href="{{URL}}/list/calleds/form/{{chamado_id}}" {{hidden}} {{canceled}}>
+        <a id="link_edit" href="{{URL}}/list/calleds/form/{{chamado_id}}" {{hidden}} {{canceled}} {{hidden_status}}>
             <i class="fas fa-edit" style="font-size: x-large; color: #0583D2;padding: 10px;"></i>
         </a>
         <a  id="link_finish" href="{{URL}}/list/calleds/finish/{{chamado_id}}" {{hidden_finish}} {{canceled}}>
             <i class="fas fa-flag-checkered" style="font-size: x-large; color: #000000; padding: 10px;"></i>
         </a>
-        <a  id="link_cancel" href="{{URL}}/list/calleds/cancel/{{chamado_id}}" {{hidden}} {{canceled}}>
+        <a  id="link_cancel" href="{{URL}}/list/calleds/cancel/{{chamado_id}}" {{hidden}} {{canceled}} {{hidden_status}}>
             <i class="fas fa-ban" style="font-size: x-large; color: #efc10a; padding: 10px;"></i>
         </a>
-        <a  id="link_delete" href="{{URL}}/list/calleds/delete/{{chamado_id}}" {{hidden}} {{canceled}}>
+        <a  id="link_delete" href="{{URL}}/list/calleds/delete/{{chamado_id}}" {{hidden}}>
             <i class="fas fa-trash-alt" style="font-size: x-large; color: #FF0000;padding: 10px;"></i>
         </a>
     </td>

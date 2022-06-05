@@ -29,7 +29,7 @@ class User extends Page
 
         $obUsers->nome = $postVars['nome'];
         $obUsers->email = $postVars['email'];
-        $obUsers->senha = $postVars['senha'];
+        $obUsers->senha = password_hash($postVars['senha'], PASSWORD_DEFAULT);
         $obUsers->role = $postVars['role'];
         $obUsers->cadastrar();
 
@@ -68,6 +68,47 @@ class User extends Page
         $obUsers->atualizar();
 
         $request->getRouter()->redirect('/list/users?status=edited');
+    }
+
+    public static function blockedUser($request, $id){
+
+        $obUsers = EntityUser::getUsers('id_usuarios = '."'$id'")->fetchObject(EntityUser::class);
+
+
+        $obUsers->isBlocked = true;
+
+        $obUsers->blocked();
+
+        $request->getRouter()->redirect('/list/users?status=blocked');
+    }
+
+    public static function getBlockedUser($request, $id){
+
+        $content = View::render('pages/block',[
+
+        ]);
+
+        return parent::getPage('Bloquear usuario', $content);
+    }
+
+    public static function unBlockedUser($request, $id){
+
+        $obUsers = EntityUser::getUsers('id_usuarios = '."'$id'")->fetchObject(EntityUser::class);
+
+        $obUsers->isBlocked = false;
+
+        $obUsers->unblocked();
+
+        $request->getRouter()->redirect('/list/users?status=unblocked');
+    }
+
+    public static function getUnBlockedUser($request, $id){
+
+        $content = View::render('pages/unblock',[
+
+        ]);
+
+        return parent::getPage('Desbloquear usuario', $content);
     }
 
 

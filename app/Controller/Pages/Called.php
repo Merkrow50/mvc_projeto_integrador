@@ -158,5 +158,23 @@ class Called extends Page
         return parent::getPage('Deletar chamado', $content);
     }
 
+    public static function getCancelledCalled($request, $id){
+        $content = View::render('pages/cancelled',[
+            'title' => 'Cancelar chamado'
+        ]);
+
+        return parent::getPage('Cancelar chamado', $content);
+    }
+
+    public static function cancelCalled($request, $id){
+
+        $obCalled = EntityCalled::getCalleds('chamado_id = '."'$id'")->fetchObject(EntityCalled::class);
+
+        $obCalled->status = "CANCELADO";
+        $obCalled->cancelar();
+
+        $request->getRouter()->redirect('/list/calleds?status=cancelled');
+    }
+
 
 }

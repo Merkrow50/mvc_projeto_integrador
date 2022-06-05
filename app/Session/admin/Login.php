@@ -20,13 +20,12 @@ class Login
     {
         self::init();
 
-        var_dump($obUser);
-
         $_SESSION['admin']['usuario'] = [
             'id_usuario' => $obUser->id_usuarios,
             'nome' => $obUser->nome,
             'email' => $obUser->email,
-            'role' => $obUser->role
+            'role' => $obUser->role,
+            'isBlocked' => $obUser->isBlocked
         ];
 
         return true;

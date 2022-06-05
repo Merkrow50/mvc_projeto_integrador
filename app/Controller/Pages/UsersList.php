@@ -32,7 +32,7 @@ class UsersList extends Page
 
 
         //QUANTIDADE TOTAL DE REGISTROS
-        $quantidadeTotal = EntityUser::getUsers("isBlocked = '0'", null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+        $quantidadeTotal = EntityUser::getUsers(null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
 
         $queryParams = $request->getQueryParams();
 
@@ -40,7 +40,7 @@ class UsersList extends Page
 
         $obPagination = new Pagination($quantidadeTotal, $paginaAtual,5);
 
-        $results = EntityUser::getUsers("isBlocked = '0'", 'id_usuarios DESC', $obPagination->getLimit());
+        $results = EntityUser::getUsers(null, 'id_usuarios DESC', $obPagination->getLimit());
 
         while ($obUsers = $results->fetchObject(User::class)){
 
@@ -48,7 +48,10 @@ class UsersList extends Page
                 'id_usuarios' => $obUsers->id_usuarios,
                 'nome' => $obUsers->nome,
                 'email' => $obUsers->email,
-                'role' => $obUsers->role
+                'role' => $obUsers->role,
+                'block' => $obUsers->isBlocked ? '/list/users/unblocked/'.$obUsers->id_usuarios : '/list/users/blocked/'.$obUsers->id_usuarios,
+                'icon' => $obUsers->isBlocked ? 'fas fa-unlock' : 'fas fa-ban',
+                'color' => $obUsers->isBlocked ? 'green' : 'red',
             ]);
 
         }

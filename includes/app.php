@@ -27,6 +27,7 @@ View::init([
 //DEFINE O MAPEAMENTO DE MIDDLEWARES
 MiddlewareQueue::setMap([
     'maintenance' => \App\Http\Middleware\Maintenance::class,
+    'user-blocked' => \App\Http\Middleware\UserBlocked::class,
     'require-admin-logout' => \App\Http\Middleware\RequireAdminLogout::class,
     'require-admin-login' => \App\Http\Middleware\RequireAdminLogin::class,
     'required-role-operator' => \App\Http\Middleware\RoleOperator::class,

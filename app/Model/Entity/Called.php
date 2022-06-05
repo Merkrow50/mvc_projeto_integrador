@@ -93,6 +93,15 @@ class Called {
         return true;
     }
 
+    public function cancelar(){
+
+        $this->chamado_id = (new Database('chamado'))->update('chamado_id = '.$this->chamado_id, [
+            'status' => $this->status
+        ]);
+
+        return true;
+    }
+
     public function deletar_chamado_colaborador(){
 
         $this->chamado_id = (new Database('chamado_colaborador'))->update('chamado_id = '.$this->chamado_id, [

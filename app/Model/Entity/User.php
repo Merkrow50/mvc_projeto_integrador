@@ -17,6 +17,8 @@ class User
 
     public $role;
 
+    public $isBlocked;
+
     /**
      * Metodo responsavel por retornar um usuario com base em seu email
      * @param $email
@@ -45,6 +47,24 @@ class User
             'nome' => $this->nome,
             'email' => $this->email,
             'role' => $this->role,
+        ]);
+
+        return true;
+    }
+
+    public function blocked(){
+
+        $this->id_usuarios = (new Database('usuarios'))->update('id_usuarios = '.$this->id_usuarios, [
+            'isBlocked' => $this->isBlocked,
+        ]);
+
+        return true;
+    }
+
+    public function unblocked(){
+
+        $this->id_usuarios = (new Database('usuarios'))->update('id_usuarios = '.$this->id_usuarios, [
+            'isBlocked' => $this->isBlocked,
         ]);
 
         return true;
