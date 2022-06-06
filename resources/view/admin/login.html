@@ -1,17 +1,27 @@
 <section class="section-alert">
     {{status}}
 </section>
-<section>
-    <form method="post">
+<div class="row" style="width: 33%;">
+    <form method="post" style="width: 100%;">
         <h1 class="title-new-entity">Login</h1>
-        <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" id="inputEmail" name="email">
+        <div class="row" style=" display: flex; justify-content: center;">
+        <div class="row">
+            <div class="col-75">
+                <label for="inputEmail">Email</label>
+                <input type="email" id="inputEmail" name="email" placeholder="Seu email...">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="inputSenha">Senha</label>
-            <input type="password" class="form-control" id="inputSenha" name="senha">
+        <div class="row">
+            <div class="col-75">
+                <label for="inputSenha">Senha</label>
+                <input type="password" id="inputSenha" name="senha" placeholder="Sua senha...">
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
+        <div class="row" style="padding: 25px">
+            <div class="col-25">
+                <input type="submit" value="Entrar">
+            </div>
+        </div>
+        </div>
     </form>
-</section>
+</div>

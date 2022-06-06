@@ -551,6 +551,8 @@
 
   let _role = "{{role}}"
 
+  console.log(_role)
+
   if(_role === "admin"){
     document.getElementById("link_called").style.display = "none";
   }
@@ -565,9 +567,9 @@
   if(_role === "driver"){
     document.getElementById("link_report").style.display = "none";
     document.getElementById("link_vehicle").style.display = "none";
+    document.getElementById("link_user").style.display = "none";
     document.getElementById("link_collaborator").style.display = "none";
     document.getElementById("btn-novo").style.display = "none";
-    document.getElementById("link_user").style.display = "none";
   }
 
   function myFunction(message) {
