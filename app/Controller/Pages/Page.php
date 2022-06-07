@@ -69,10 +69,16 @@
         if(isset($_GET["page"])){
             $next = $url.'?page='.($_GET["page"] + 1);
             $previous = $url.'?page='.($_GET["page"] - 1);
+
+            if($_GET["page"] == "1"){
+                $disabled = 'disabled';
+            }
         }else{
             $next = $url.'?page=2';
             $disabled = 'disabled';
         }
+
+
 
 
 
