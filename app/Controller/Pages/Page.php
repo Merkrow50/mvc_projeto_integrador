@@ -62,7 +62,25 @@
                 'active' => $page['current'] ? 'active' : '',
             ]);
         }
+
+        $next = '';
+        $previous = '';
+        $disabled = '';
+        if(isset($_GET["page"])){
+            $next = $url.'?page='.($_GET["page"] + 1);
+            $previous = $url.'?page='.($_GET["page"] - 1);
+        }else{
+            $next = $url.'?page=2';
+            $disabled = 'disabled';
+        }
+
+
+
+
         return View::render('pages/pagination/box', [
+            'next' => $next,
+            'previous' => $previous,
+            'disabled' => $disabled,
             'links' => $links
         ]);
     }

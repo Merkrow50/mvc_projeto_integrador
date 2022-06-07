@@ -1,12 +1,12 @@
 <div class="container-form">
   <h1 style="padding: 2rem 0; text-align:center;">{{title}}</h1>
-  <form method="post">
+  <form method="post" onsubmit="onSubmit()">
     <div class="row">
       <div class="col-25">
         <label for="nome">Nome</label>
       </div>
       <div class="col-75">
-        <input type="text" id="nome" name="nome" placeholder="Seu nome..." value="{{nome}}">
+        <input type="text" id="nome" name="nome" placeholder="Seu nome..." required value="{{nome}}">
       </div>
     </div>
     <div class="row">
@@ -14,7 +14,7 @@
         <label for="matricula">Matrícula</label>
       </div>
       <div class="col-75">
-        <input type="text" id="matricula" name="matricula" placeholder="Seu número de matrícula..." value="{{matricula}}">
+        <input type="text" id="matricula" name="matricula" placeholder="Seu número de matrícula..." required value="{{matricula}}">
       </div>
     </div>
     <div class="row">
@@ -22,7 +22,7 @@
       <label for="habilitado">Habilitado?</label>
     </div>
     <div class="col-75">
-      <select id="habilitado" name="habilitado">
+      <select id="habilitado" required name="habilitado">
         <option {{selected_true}} value="1">Sim</option>
         <option {{selected_false}} value="0">Não</option>
       </select>
@@ -33,7 +33,9 @@
       <input type="button" onclick="history.back();" value="Cancelar">
     </div>
       <div class="col-50">
-      <input type="submit" value="Salvar">
+        <button id="btn-submit" type="submit">
+          <i id="icon-submit" class="fas fa-circle-notch fa-spin"></i>Salvar
+        </button>
       </div>
     </div>
   </form>

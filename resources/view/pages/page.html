@@ -316,6 +316,27 @@
       float: right;
     }
 
+    button[type=submit] {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      float: right;
+    }
+
+
+    button[type=submit]:disabled {
+      background-color: #c1c1c1;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      float: right;
+    }
+
     /* Style the submit button */
     input[type=button] {
       background-color: #777777;
@@ -504,6 +525,18 @@
       to {top: 0; opacity: 0;}
     }
 
+
+    #icon-submit{
+      margin-left: -12px;
+      margin-right: 8px;
+      display:none;
+    }
+
+
+    a[disabled] {
+      pointer-events: none;
+      background-color: #dddddd;
+    }
   </style>
 </head>
 <body>
@@ -584,7 +617,14 @@
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
   }
 
+  function onSubmit(){
+    document.getElementById('icon-submit').style.display = "inline-block"
+    document.getElementById('btn-submit').disabled = true;
+  }
+
   const params = new URLSearchParams(window.location.search)
+
+
   switch(params.get('status')){
     case 'edited':
       myFunction("Item editado com sucesso!");

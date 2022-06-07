@@ -1,4 +1,4 @@
-<div class="container-form">
+<div class="container-form" onsubmit="onSubmit()">
   <h1 style="padding: 2rem 0; text-align:center;">{{title}}</h1>
   <form method="post">
     <div class="row">
@@ -35,7 +35,9 @@
         <input type="button" onclick="history.back();" value="Cancelar">
       </div>
       <div class="col-50">
-        <input type="submit" value="Salvar">
+        <button id="btn-submit" type="submit">
+          <i id="icon-submit" class="fas fa-circle-notch fa-spin"></i>Salvar
+        </button>
       </div>
     </div>
   </form>
