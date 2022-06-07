@@ -66,12 +66,17 @@
         $next = '';
         $previous = '';
         $disabled = '';
+        $disabledNext = '';
         if(isset($_GET["page"])){
             $next = $url.'?page='.($_GET["page"] + 1);
             $previous = $url.'?page='.($_GET["page"] - 1);
 
             if($_GET["page"] == "1"){
                 $disabled = 'disabled';
+            }
+
+            if($_GET["page"] == $queryParams['page']){
+                $disabledNext = 'disabled';
             }
         }else{
             $next = $url.'?page=2';
@@ -86,7 +91,8 @@
         return View::render('pages/pagination/box', [
             'next' => $next,
             'previous' => $previous,
-            'disabled' => $disabled,
+            'disabledPrevious' => $disabled,
+            'disabledNext' => $disabledNext,
             'links' => $links
         ]);
     }
