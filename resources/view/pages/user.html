@@ -6,7 +6,7 @@
         <label for="nome">Nome</label>
       </div>
       <div class="col-75">
-        <input type="text" id="nome" name="nome" placeholder="Seu nome..." value="{{nome}}">
+        <input type="text" id="nome" name="nome" placeholder="Seu nome..." required value="{{nome}}">
       </div>
     </div>
     <div class="row">
@@ -14,7 +14,7 @@
         <label for="email">Email</label>
       </div>
       <div class="col-75">
-        <input type="email" id="email" name="email" placeholder="Seu email..." value="{{email}}">
+        <input type="email" id="email" name="email" placeholder="Seu email..." required value="{{email}}">
       </div>
     </div>
     <div class="row">
@@ -22,7 +22,7 @@
       <label for="role">Função</label>
     </div>
     <div class="col-75">
-      <select id="role" name="role">
+      <select id="role" required name="role">
         <option {{operator}} value="operator">Operador</option>
         <option {{driver}} value="driver">Motorista</option>
         <option {{admin}} value="admin">Administrador</option>
@@ -35,7 +35,15 @@
         <label for="senha">Senha</label>
       </div>
       <div class="col-75">
-        <input type="password" id="senha" name="senha" placeholder="Sua senha..." value="{{senha}}">
+        <input type="password" id="senha" name="senha" placeholder="Sua senha..." required value="{{senha}}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="conf_senha">Confirmar Senha</label>
+      </div>
+      <div class="col-75">
+        <input type="password" id="conf_senha" name="conf_senha" placeholder="Confirme sua senha..." data-equal-id="senha" required value="{{senha}}">
       </div>
     </div>
     <div class="row" style="padding: 25px">

@@ -2,11 +2,183 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
     <style>
+        /* Theming */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"); /* import font */
+
+        :root{
+            --white: #f9f9f9;
+            --black: #36383F;
+            --gray: #85888C;
+        } /* variables*/
+
+        /* Reset */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color:var(--white);
+        }
+
+        body, html {
+            height: 100%;
+        }
+        body{
+            background-color: var(--white);
+            background-image: url("https://wallpaperboat.com/wp-content/uploads/2019/12/foggy-forest-01.jpg");
+            font-family: "Poppins", sans-serif;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        a{
+            text-decoration: none;
+        }
+        ul{
+            list-style: none;
+        }
+
+        /* Header */
+        .header{
+            background-color: var(--black);
+            box-shadow: 1px 1px 5px 0px var(--gray);
+            position: sticky;
+            top: 0;
+            width: 100%;
+        }
+        /* Logo */
+        .logo{
+            display: inline-block;
+            color: var(--white);
+            font-size: 60px;
+            margin-left: 10px;
+        }
+
+        /* Nav menu */
+        .nav{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background-color: var(--black);
+            overflow: hidden;
+
+        }
+        .menu a{
+            display: block;
+            padding: 30px;
+            color: var(--white);
+        }
+        .menu a:hover{
+            background-color: var(--gray);
+        }
+
+        .nav{
+            max-height: 0;
+            transition: max-height .5s ease-out;
+        }
+
+        /* Menu Icon */
+        .hamb{
+            cursor: pointer;
+            float: right;
+            padding: 40px 20px;
+        }/* Style label tag */
+
+        .hamb-line {
+            background: var(--white);
+            display: block;
+            height: 2px;
+            position: relative;
+            width: 24px;
+
+        } /* Style span tag */
+
+        .hamb-line::before,
+        .hamb-line::after{
+            background: var(--white);
+            content: '';
+            display: block;
+            height: 100%;
+            position: absolute;
+            transition: all .2s ease-out;
+            width: 100%;
+        }
+        .hamb-line::before{
+            top: 5px;
+        }
+        .hamb-line::after{
+            top: -5px;
+        }
+
+        .side-menu {
+            display: none;
+        } /* Hide checkbox */
+
+        /* Toggle menu icon */
+        .side-menu:checked ~ nav{
+            max-height: 100%;
+        }
+        .side-menu:checked ~ .hamb .hamb-line {
+            background: transparent;
+        }
+        .side-menu:checked ~ .hamb .hamb-line::before {
+            transform: rotate(-45deg);
+            top:0;
+        }
+        .side-menu:checked ~ .hamb .hamb-line::after {
+            transform: rotate(45deg);
+            top:0;
+        }
+
+        /* Responsiveness */
+        @media (min-width: 768px) {
+            .nav{
+                max-height: none;
+                top: 0;
+                position: relative;
+                float: right;
+                width: fit-content;
+            }
+            .menu li{
+                float: left;
+            }
+            .menu a:hover{
+                background-color: transparent;
+                color: var(--gray);
+
+            }
+
+            .hamb{
+                display: none;
+            }
+        }
 
 
+        .jumbotron {
+            margin-top: 5rem;
+            /*padding: 2rem 1rem;*/
+            margin-bottom: 2rem;
+            border-radius: 0.3rem;
+        }
 
+        .jumbotron-fluid {
+            padding-right: 0;
+            padding-left: 0;
+            border-radius: 0;
+        }
+
+
+        /*.jumbotron {*/
+        /*    padding: 4rem 2rem;*/
+        /*}*/
 
         /* Style inputs, select elements and textareas */
         input[type=text], input[type=datetime-local], input[type=number], input[type=email], input[type=password], select, textarea{
@@ -27,6 +199,27 @@
         /* Style the submit button */
         input[type=submit] {
             background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        button[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+
+        button[type=submit]:disabled {
+            background-color: #c1c1c1;
             color: white;
             padding: 12px 20px;
             border: none;
@@ -84,13 +277,6 @@
             margin-top: 6px;
         }
 
-        /* Floating column for inputs: 75% width */
-        .col-100 {
-            float: left;
-            width: 100%;
-            margin-top: 6px;
-        }
-
         /* Clear floats after the columns */
         .row:after {
             content: "";
@@ -100,17 +286,61 @@
 
         /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 600px) {
-            .col-25, .col-75, input[type=submit] {
+            .col-25, .col-50, .col-75, input[type=submit] {
                 width: 100%;
                 margin-top: 0;
             }
         }
 
+        /* Animations to fade the snackbar in and out */
+        @-webkit-keyframes fadein {
+            from {top: 0; opacity: 0;}
+            to {top: 30px; opacity: 1;}
+        }
 
+        @keyframes fadein {
+            from {top: 0; opacity: 0;}
+            to {top: 30px; opacity: 1;}
+        }
+
+        @-webkit-keyframes fadeout {
+            from {top: 30px; opacity: 1;}
+            to {top: 0; opacity: 0;}
+        }
+
+        @keyframes fadeout {
+            from {top: 30px; opacity: 1;}
+            to {top: 0; opacity: 0;}
+        }
+
+
+        /* The snackbar - position it at the bottom and in the middle of the screen */
+        #snackbar {
+            visibility: hidden; /* Hidden by default. Visible on click */
+            min-width: 250px; /* Set a default minimum width */
+            margin-left: -125px; /* Divide value of min-width by 2 */
+            background-color: #333; /* Black background color */
+            color: #fff; /* White text color */
+            text-align: center; /* Centered text */
+            border-radius: 2px; /* Rounded borders */
+            padding: 16px; /* Padding */
+            position: fixed; /* Sit on top of the screen */
+            z-index: 1; /* Add a z-index if needed */
+            left: 50%; /* Center the snackbar */
+            top: 30px; /* 30px from the bottom */
+        }
+
+        /* Show the snackbar when clicking on a button (class added with JavaScript) */
+        #snackbar.show {
+            visibility: visible; /* Show the snackbar */
+            /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+            However, delay the fade out process for 2.5 seconds */
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
 
 
         .alert {
-            margin-top: 5rem;
             max-width: 100%;
             padding: 12px 16px;
             border-radius: 4px;
@@ -152,94 +382,19 @@
         }
 
 
-        /* The snackbar - position it at the bottom and in the middle of the screen */
-        #snackbar {
-            visibility: hidden; /* Hidden by default. Visible on click */
-            min-width: 250px; /* Set a default minimum width */
-            margin-left: -240px; /* Divide value of min-width by 2 */
-            background-color: #333; /* Black background color */
-            color: #fff; /* White text color */
-            text-align: center; /* Centered text */
-            border-radius: 2px; /* Rounded borders */
-            padding: 16px; /* Padding */
-            position: fixed; /* Sit on top of the screen */
-            z-index: 1; /* Add a z-index if needed */
-            left: 50%; /* Center the snackbar */
-            top: 30px; /* 30px from the bottom */
-        }
-
-        /* Show the snackbar when clicking on a button (class added with JavaScript) */
-        #snackbar.show {
-            visibility: visible; /* Show the snackbar */
-            /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-            However, delay the fade out process for 2.5 seconds */
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-        /* Animations to fade the snackbar in and out */
-        @-webkit-keyframes fadein {
-            from {
-                top: 0;
-                opacity: 0;
-            }
-            to {
-                top: 30px;
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadein {
-            from {
-                top: 0;
-                opacity: 0;
-            }
-            to {
-                top: 30px;
-                opacity: 1;
-            }
-        }
-
-        @-webkit-keyframes fadeout {
-            from {
-                top: 30px;
-                opacity: 1;
-            }
-            to {
-                top: 0;
-                opacity: 0;
-            }
-        }
-
-        @keyframes fadeout {
-            from {
-                top: 30px;
-                opacity: 1;
-            }
-            to {
-                top: 0;
-                opacity: 0;
-            }
-        }
-
-        .container {
-            display: flex;
-            justify-content: center;
-        }
-
-
 
     </style>
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-</head>
 </head>
 <body>
-<div class="container">
-        <div id="snackbar">Some text some message..</div>
-        {{content}}
-</div>
+    {{header}}
+    <div id="snackbar">Some text some message..</div>
+    {{content}}
+
 </body>
 <script>
+
+
+
     function myFunction(message) {
         // Get the snackbar DIV
         var x = document.getElementById("snackbar");
@@ -249,11 +404,8 @@
         x.innerText = message
 
         // After 3 seconds, remove the show class from DIV
-        setTimeout(function () {
-            x.className = x.className.replace("show", "");
-        }, 3000);
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
-
     const params = new URLSearchParams(window.location.search)
     console.log(params.get('status'))
     switch (params.get('status')) {

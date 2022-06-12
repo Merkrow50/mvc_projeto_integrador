@@ -560,6 +560,16 @@
 
 <script>
 
+  $('[data-equal-id]').bind('input', function() {
+    var to_confirm = $(this);
+    var to_equal = $('#' + to_confirm.data('equalId'));
+
+    if(to_confirm.val() != to_equal.val())
+      this.setCustomValidity('As senhas devem ser iguais!');
+    else
+      this.setCustomValidity('');
+  });
+
   $(document).on('click', function(e) {
     let w3 = $("#w3");
     if (!$(e.target).closest(w3).length) {
@@ -652,6 +662,10 @@
       break;
     case 'unblocked':
       myFunction("Item desbloqueado com sucesso!");
+      window.history.pushState("object or string", "Title", window.location.pathname);
+      break;
+    case 'exist':
+      myFunction("Item já existente!");
       window.history.pushState("object or string", "Title", window.location.pathname);
       break;
   }

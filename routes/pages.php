@@ -314,25 +314,25 @@ $obRouter->get('/list/users',[
     }
 ]);
 
-$obRouter->get('/list/users/form/{id}',[
-    'middlewares' => [
-        'require-admin-login',
-        'required-role-admin'
-    ],
-    function($request, $id){
-        return new Response(200, Pages\User::getEditUser($request, $id));
-    }
-]);
-
-$obRouter->post('/list/users/form/{id}',[
-    'middlewares' => [
-        'require-admin-login',
-        'required-role-admin'
-    ],
-    function($request, $id){
-        return new Response(200, Pages\User::editUser($request, $id));
-    }
-]);
+//$obRouter->get('/list/users/form/{id}',[
+//    'middlewares' => [
+//        'require-admin-login',
+//        'required-role-admin'
+//    ],
+//    function($request, $id){
+//        return new Response(200, Pages\User::getEditUser($request, $id));
+//    }
+//]);
+//
+//$obRouter->post('/list/users/form/{id}',[
+//    'middlewares' => [
+//        'require-admin-login',
+//        'required-role-admin'
+//    ],
+//    function($request, $id){
+//        return new Response(200, Pages\User::editUser($request, $id));
+//    }
+//]);
 
 $obRouter->get('/list/users/blocked/{id}',[
     'middlewares' => [

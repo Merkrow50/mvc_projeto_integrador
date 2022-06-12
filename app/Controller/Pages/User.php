@@ -3,6 +3,7 @@
 namespace App\Controller\Pages;
 
 use App\Model\Entity\Collaborators as EntityCollaborators;
+use App\Model\Entity\EnumRole;
 use App\Model\Entity\User as EntityUser;
 use App\Utils\View;
 
@@ -25,7 +26,20 @@ class User extends Page
     public static function insertUser($request){
         $postVars = $request->getPostVars();
 
+        $roles = array('admin', 'super', 'operator', 'driver');
+
+        $obUser = \App\Model\Entity\User::getUserByEmail($postVars['email']);
+
+        if(!is_null($obUser)){
+            $request->getRouter()->redirect('/list/users?status=exist');
+            return;
+        }
+
         $obUsers = new EntityUser;
+
+        if(!in_array($postVars['role'], $roles)){
+            throw new \Error('Função Inválida');
+        }
 
         $obUsers->nome = $postVars['nome'];
         $obUsers->email = $postVars['email'];
@@ -58,9 +72,13 @@ class User extends Page
 
     public static function editUser($request, $id){
         $postVars = $request->getPostVars();
+        $roles = array('admin', 'super', 'operator', 'driver');
 
         $obUsers = EntityUser::getUsers('id_usuarios = '."'$id'")->fetchObject(EntityUser::class);
 
+        if(!in_array($postVars['role'], $roles)){
+            throw new \Error('Função Inválida');
+        }
 
         $obUsers->nome = $postVars['nome'] ?? $obUsers->nome;
         $obUsers->email = $postVars['email'] ?? $obUsers->email;

@@ -16,8 +16,15 @@ class Page
     public static function getPage($title, $content){
         return View::render('admin/page',[
             'title' => $title,
-            'content' => $content
+            'content' => $content,
+            'header' => self::getHeader(),
         ]);
     }
+
+
+    private static function getHeader(){
+        return View::render('admin/header',[]);
+    }
+
 
 }

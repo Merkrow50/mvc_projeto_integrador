@@ -85,6 +85,7 @@ class Called extends Page
         $obCalled = EntityCalled::getCalleds('chamado_id = '."'$id'")->fetchObject(EntityCalled::class);
 
         $content = View::render('pages/called-finish',[
+            'min' => $obCalled->hodometro_start,
             'title' => 'Finalizar chamado'
         ]);
 
