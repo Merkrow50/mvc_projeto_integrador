@@ -277,6 +277,14 @@
             margin-top: 6px;
         }
 
+        /* Float four columns side by side */
+        .column {
+            float: left;
+            width: 33%;
+            padding: 0 10px;
+            margin: inherit;
+        }
+
         /* Clear floats after the columns */
         .row:after {
             content: "";
@@ -382,7 +390,41 @@
         }
 
 
+
+        /* Style the counter cards */
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+            padding: 16px;
+            text-align: center;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        /* Responsive columns - one column layout (vertical) on small screens */
+        @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+                display: block;
+                margin-bottom: 20px;
+            }
+        }
+
+        .social {
+            padding: 16px;
+        }
+
+        .social li {
+            display:inline;
+        }
+
+        ul {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: end;
+        }
+
     </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
 </head>
 <body>
     {{header}}
@@ -420,11 +462,11 @@
     }
 
     if(window.location.pathname.includes('sobre')){
-        document.getElementById("login").style.color = "#41A58D";
+        document.getElementById("sobre").style.color = "#41A58D";
     }
 
     if(window.location.pathname.includes('contato')){
-        document.getElementById("login").style.color = "#41A58D";
+        document.getElementById("contato").style.color = "#41A58D";
     }
 
 

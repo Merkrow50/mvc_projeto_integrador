@@ -19,5 +19,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="w3" level="application" />
+    <orderEntry type="library" name="all" level="application" />
   </component>
 </module>

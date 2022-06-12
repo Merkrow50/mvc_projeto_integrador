@@ -14,6 +14,15 @@ $obRouter->get('/admin',[
     }
 ]);
 
+$obRouter->get('/admin/sobre',[
+    'middlewares' => [
+        'require-admin-logout'
+    ],
+    function($request){
+        return new Response(200, \App\Controller\Admin\About::getLogin($request));
+    }
+]);
+
 $obRouter->get('/admin/login',[
     'middlewares' => [
         'require-admin-logout'
