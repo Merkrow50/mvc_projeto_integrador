@@ -382,7 +382,6 @@
         }
 
 
-
     </style>
 </head>
 <body>
@@ -392,6 +391,7 @@
 
 </body>
 <script>
+
 
 
 
@@ -414,5 +414,19 @@
             window.history.pushState("object or string", "Title", window.location.pathname);
             break;
     }
+
+    if(window.location.pathname.includes('login')){
+        document.getElementById("login").style.color = "#41A58D";
+    }
+
+    if(window.location.pathname.includes('sobre')){
+        document.getElementById("login").style.color = "#41A58D";
+    }
+
+    if(window.location.pathname.includes('contato')){
+        document.getElementById("login").style.color = "#41A58D";
+    }
+
+
 </script>
 </html>
