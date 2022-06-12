@@ -14,12 +14,23 @@ $obRouter->get('/admin',[
     }
 ]);
 
+
+$obRouter->get('/admin/contato',[
+    'middlewares' => [
+        'require-admin-logout'
+    ],
+    function($request){
+        return new Response(200, \App\Controller\Admin\Contact::getContact($request));
+    }
+]);
+
+
 $obRouter->get('/admin/sobre',[
     'middlewares' => [
         'require-admin-logout'
     ],
     function($request){
-        return new Response(200, \App\Controller\Admin\About::getLogin($request));
+        return new Response(200, \App\Controller\Admin\About::getAbout($request));
     }
 ]);
 
