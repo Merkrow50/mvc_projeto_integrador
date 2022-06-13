@@ -30,7 +30,7 @@ class User extends Page
 
         $obUser = \App\Model\Entity\User::getUserByEmail($postVars['email']);
 
-        if(!is_null($obUser)){
+        if(is_null($obUser)){
             $request->getRouter()->redirect('/list/users?status=exist');
             return;
         }
